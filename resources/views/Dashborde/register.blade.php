@@ -85,12 +85,25 @@
     @section('title', 'Register')
     
     @section('content')
+    @php
+    $hidelogout=true;
+        
+    @endphp
         <div class="register-container">
-            <div class="register-background"></div> <!-- پس‌زمینه تار -->
+            <di class="register-background"></di>
             <div class="register-form">
                 <h2>Register</h2>
                 <form method="POST" action="{{ route('Dashborde.register') }}">
                     @csrf
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div>
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required autofocus>

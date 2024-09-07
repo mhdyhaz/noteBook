@@ -6,8 +6,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
- 
-        
         .button-container {
             display: flex;
             flex-direction: column;
@@ -31,23 +29,26 @@
         }
 
         .button-container button:hover {
-            background-color:  rgb(11, 11, 100);
+            background-color: rgb(11, 11, 100);
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        @extends('Layouts.app')
+    @extends('Layouts.app')
 
-        @section('title', 'Home Page')
+
+    @section('content')
+@php
+$hideBackButton=true;  
+    $hidelogout=true;
         
-        @section('content')
-        <div class="button-container">
-            <button onclick="window.location.href='{{ route('Dashborde.login') }}'">Login</button>
-            <button onclick="window.location.href='{{ route('Dashborde.register') }}'">Register</button>
-        </div>
-        @endsection
-        
+@endphp
+
+    <div class="button-container">
+        <button onclick="window.location.href='{{ route('Dashborde.login') }}'">Login</button>
+        <button onclick="window.location.href='{{ route('Dashborde.register') }}'">Register</button>
     </div>
+    @endsection
+
 </body>
 </html>

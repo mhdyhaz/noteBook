@@ -6,6 +6,9 @@
      <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalabe=no">
    
     <style>
@@ -46,21 +49,39 @@
     left: 10px;
     font-family: initial;
     }
+    #logout[type="submit"]{
+
+        color:white;
+    border: none;
+    opacity: inherit;
+    position: absolute;
+    top: 50px;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: rgb(11, 11, 100);
+    padding: 3px 10px;
+    left: 10px;
+    font-family: initial;
+    }
+
 }
     </style>
 </head>
 
 <body>
-    <button id="backButton" type="submit" style="display: -webkit-inline-flex">back</button>
 
-<script src="../bootstrap/bootstrap.min.js"></script>
-<script>
-    document.getElementById("backButton").addEventListener("click", function() {
-     window.history.back();
- });
-</script>
+        @if(!isset($hideBackButton) || !$hideBackButton)
+            <button id="backButton" type="submit" onclick="window.history.back()" >Back</button>
+        @endif
+ 
+@if(!isset($hidelogout) || !$hidelogout)
+<form action="{{ route('Dashborde.home') }}" method="GET">
+    <button id="logout" type="submit" >logout</button>
+</form>
+
+@endif
     <div class="header">
-        <h1 id="b-id">MENU</h1>
+        <h1 id="b-id">Notebook</h1>
 
     </div>
 

@@ -72,11 +72,24 @@
     @section('title', 'Login')
     
     @section('content')
+    @php
+    $hidelogout=true;
+        
+    @endphp
         <div class="login-container">
             <div class="login-form">
                 <h2>Login</h2>
                 <form method="POST" action="{{ route('Dashborde.login') }}">
                     @csrf
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div>
                         <label for="email">Email</label>
                         <input type="text" id="email" name="email">
