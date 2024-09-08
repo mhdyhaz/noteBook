@@ -6,7 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Register</title>
     <style>
-        /* استایل برای فرم ثبت‌نام */
+        
         .register-container {
             display: flex;
             justify-content: center;
@@ -60,7 +60,7 @@
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 13px;
         }
 
         .register-form button[type="submit"] {

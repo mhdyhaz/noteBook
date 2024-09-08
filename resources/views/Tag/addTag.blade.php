@@ -90,29 +90,14 @@
 
 
     @section('content')
-        <h2 id="cM"> Edit Menu</h2>
+        <h2 id="cM"> Add A Tag</h2>
         <div class="menu-container">
         
             <div class="menu-form">
-                <form method="POST" action="{{ route('AllMenus.edit') }}">
+                <form method="POST" action="{{ route('Tag.addTag') }}">
                     <div>
                         <label  for="name"> Name </label>
                         <input type="text"  name="name" required autofocus>
-                    </div>
-
-                    <div>
-                        <label for="menu" id="inputN"> Parent Menu</label>
-                        <select id="parent-menu" name="parent-menu">
-                            <option value="">.</option>
-                            <option value="Fantasy novel">.</option>
-                            <option value="Mystery novel">.</option>
-                        </select>
-
-                    </div>
-
-                    <div>
-                        <label> Tags</label>
-                        <input type="Tags" name="tag"required autofocus>
                     </div>
                     <div>
                         <button type="submit"> create </button>

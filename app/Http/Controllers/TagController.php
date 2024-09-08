@@ -21,7 +21,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('Tag.tag');
+        return view('Tag.addTag');
     }
 
     /**

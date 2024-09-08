@@ -90,11 +90,11 @@
 
 
     @section('content')
-        <h2 id="cM"> Edit Menu</h2>
+        <h2 id="cM"> Creat A New Menu</h2>
         <div class="menu-container">
         
             <div class="menu-form">
-                <form method="POST" action="{{ route('AllMenus.edit') }}">
+                <form method="POST" action="{{ route('AllMenus.createMenu') }}">
                     <div>
                         <label  for="name"> Name </label>
                         <input type="text"  name="name" required autofocus>

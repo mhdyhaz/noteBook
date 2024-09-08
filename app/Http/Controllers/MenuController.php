@@ -13,7 +13,7 @@ class MenuController extends Controller
     }
     public function create()
     {
-        return view('AllMenus.create_menu'); 
+        return view('AllMenus.createMenu'); 
     }
     public function edit()
     {

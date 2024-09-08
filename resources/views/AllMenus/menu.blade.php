@@ -83,25 +83,29 @@
     @extends('Layouts.app')
 
     @section('content')
+    @php
+    $hideBackButton=true;
+        
+@endphp
         <div class="menu-container">
             <div class="icon-box">
-                <a id="a" href="{{ route('AllMenus.create_menu') }}"><i class="bi  bi-folder-plus"></i> Create New Menu</a>
+                <a id="a" href="{{ route('AllMenus.createMenu') }}"><i class="bi  bi-folder-plus"></i> Create New Menu</a>
             </div>
             <div class="icon-box">
                 <a id="a" href="{{route('AllMenus.edit')}}"><i class="bi bi-pencil-square"></i> Edit Menu</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('Tag.tag')}}"><i class="bi bi-tag "></i> Add A New Tag</a>
+                <a id="a" href="{{route('Tag.addTag')}}"><i class="bi bi-tag "></i> Add A New Tag</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="/page4"><i class="bi bi-folder-symlink"></i> Shared With Me Menus</a>
+                <a id="a" href="{{route('Share.sharedMe')}}"><i class="bi bi-share-fill "></i> Shared With Me Menus</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="/page5"><i class="bi bi-share-fill"></i> Shared With Others</a>
+                <a id="a" href="{{route('Share.sharedOther')}}"><i class="bi bi-folder-symlink"></i> Shared With Others</a>
             </div>
         </div>
 
-        {{-- <div class="sidebar">
+        <div class="sidebar">
         <h5>Menu</h5>
         <div id="jstree">
             <ul>
@@ -115,7 +119,7 @@
             </ul>
         </div>
     </div>
-     --}}
+    
         <script>
             $(function() {
                 $('#jstree').jstree({
