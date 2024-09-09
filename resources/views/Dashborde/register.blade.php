@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Register</title>
     <style>
-        
         .register-container {
             display: flex;
             justify-content: center;
@@ -30,7 +30,7 @@
         }
 
         .register-form {
-            
+
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -79,54 +79,57 @@
         }
     </style>
 </head>
+
 <body>
     @extends('Layouts.app')
 
     @section('title', 'Register')
-    
+
     @section('content')
-    @php
-    $hidelogout=true;
-        
-    @endphp
+
+        @php
+            $hidelogout = true;
+        @endphp
+
         <div class="register-container">
             <di class="register-background"></di>
             <div class="register-form">
                 <h2>Register</h2>
-                <form method="POST" action="{{ route('Dashborde.register') }}">
-                    @csrf
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                    <div>
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required autofocus>
-                    </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div>
-                        <label for="password_confirmation">Confirm Password</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation" required>
-                    </div>
-                    <div>
-                        <button type="submit">Register</button>
-                    </div>
-                </form>
+                    <form method="POST" action="{{ route('Dashborde.register') }}">
+                        @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required autofocus>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div>
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" id="password_confirmation" name="password_confirmation" required>
+                        </div>
+                        <div>
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
             </div>
         </div>
     @endsection
-    
+
 </body>
+
 </html>

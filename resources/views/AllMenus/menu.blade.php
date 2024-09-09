@@ -20,18 +20,16 @@
         }
 
         .menu-container {
-    text-align: center;
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 44rem;
-    display: flex;
-    flex-wrap: unset;
-    gap: 21px;
-    }
-
-
+            text-align: center;
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 44rem;
+            display: flex;
+            flex-wrap: unset;
+            gap: 21px;
+        }
 
         .icon-box {
             border: 2px solid #3000dd;
@@ -43,13 +41,13 @@
             margin: 1px;
             background: #f2f0fd7a;
             transition: border-width 0.1s ease, box-shadow 0.1s ease;
-        
         }
+
         .icon-box:hover {
-    border-width: 4px;
-    box-shadow: 0 8px 16px rgba(4, 0, 0, 0.79);
-    
-}
+            border-width: 4px;
+            box-shadow: 0 8px 16px rgba(4, 0, 0, 0.79);
+        }
+
         .icon-box i {
             font-size: 3rem;
             color: #0d021f;
@@ -68,7 +66,6 @@
 
         #jstree {
             margin: 35px 7px 33px 27px;
-
         }
 
         #a {
@@ -85,8 +82,7 @@
     @section('content')
     @php
     $hideBackButton=true;
-        
-@endphp
+    @endphp
         <div class="menu-container">
             <div class="icon-box">
                 <a id="a" href="{{ route('AllMenus.createMenu') }}"><i class="bi  bi-folder-plus"></i> Create New Menu</a>
@@ -95,10 +91,10 @@
                 <a id="a" href="{{route('AllMenus.edit')}}"><i class="bi bi-pencil-square"></i> Edit Menu</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('Tag.addTag')}}"><i class="bi bi-tag "></i> Add A New Tag</a>
+                <a id="a" href="{{route('Tag.addTag')}}"><i class="bi bi-tag"></i> Add A New Tag</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('Share.sharedMe')}}"><i class="bi bi-share-fill "></i> Shared With Me Menus</a>
+                <a id="a" href="{{route('Share.sharedMe')}}"><i class="bi bi-share-fill"></i> Shared With Me Menus</a>
             </div>
             <div class="icon-box">
                 <a id="a" href="{{route('Share.sharedOther')}}"><i class="bi bi-folder-symlink"></i> Shared With Others</a>
@@ -106,19 +102,19 @@
         </div>
 
         <div class="sidebar">
-        <h5>Menu</h5>
-        <div id="jstree">
-            <ul>
-                <li>Submenu 1
-                    <ul>
-                        <li>Sub-submenu 1</li>
-                        <li>Sub-submenu 2</li>
-                    </ul>
-                </li>
-                <li>Submenu 2</li>
-            </ul>
+            <h5>Menu</h5>
+            <div id="jstree">
+                <ul>
+                    <li>Submenu 1
+                        <ul>
+                            <li>Sub-submenu 1</li>
+                            <li>Sub-submenu 2</li>
+                        </ul>
+                    </li>
+                    <li>Submenu 2</li>
+                </ul>
+            </div>
         </div>
-    </div>
     
         <script>
             $(function() {

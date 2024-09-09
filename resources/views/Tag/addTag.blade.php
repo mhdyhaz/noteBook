@@ -95,14 +95,17 @@
         
             <div class="menu-form">
                 <form method="POST" action="{{ route('Tag.addTag') }}">
+                    {{--  @csrfمهم --}}
+                    @csrf
                     <div>
-                        <label  for="name"> Name </label>
-                        <input type="text"  name="name" required autofocus>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" required autofocus>
                     </div>
                     <div>
-                        <button type="submit"> create </button>
+                        <button type="submit">Create</button>
                     </div>
                 </form>
+                
             </div>
         </div>
     @endsection

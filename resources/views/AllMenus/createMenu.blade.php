@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
     <style>
         .menu-container {
             display: flex;
@@ -25,9 +23,6 @@
             top: 17rem;
         }
 
-
-     
-
         .menu-form {
             padding: 20px;
             border-radius: 8px;
@@ -37,17 +32,6 @@
             flex-direction: column;
             z-index: 2;
         }
-
-        .menu-form {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 32rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 2;
-        }
-        
 
         .menu-form label {
             margin-bottom: 5px;
@@ -79,49 +63,67 @@
         .menu-form button[type="submit"]:hover {
             background-color: #e5ebf0;
         }
-    </style>
 
+
+        #messeg {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 32rem;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+            color: #ccc;
+             background-color: black;
+            position: fixed;
+            bottom: 180px;
+        }
+        }
+    </style>
 </head>
 
 <body>
-
-
     @extends('Layouts.app')
 
-
     @section('content')
-        <h2 id="cM"> Creat A New Menu</h2>
+        @if (session('success'))
+            <div id="messeg" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <h2 id="cM">Create A New Menu</h2>
         <div class="menu-container">
-        
             <div class="menu-form">
                 <form method="POST" action="{{ route('AllMenus.createMenu') }}">
+                    @csrf
                     <div>
-                        <label  for="name"> Name </label>
-                        <input type="text"  name="name" required autofocus>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" required autofocus>
                     </div>
 
                     <div>
-                        <label for="menu" id="inputN"> Parent Menu</label>
-                        <select id="parent-menu" name="parent-menu">
-                            <option value="">.</option>
-                            <option value="Fantasy novel">.</option>
-                            <option value="Mystery novel">.</option>
+                        <label for="parent-menu">Parent Menu</label>
+                        <select id="parent-menu" name="parent_menu">
+                            <option value="">root</option>
+                            @foreach ($menus as $menu)
+                                <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                            @endforeach
                         </select>
-
                     </div>
 
                     <div>
-                        <label> Tags</label>
-                        <input type="Tags" name="tag"required autofocus>
+                        <label for="tags">Tags</label>
+                        <input type="text" name="tag">
                     </div>
+
                     <div>
-                        <button type="submit"> create </button>
+                        <button type="submit">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     @endsection
-
 </body>
 
 </html>

@@ -16,11 +16,13 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
+    // اعتبارسنجی
+    // عدم تکراری بودن مقادیر =unique
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:4|confirmed',
         ]);
        
         if ($validator->fails()) {

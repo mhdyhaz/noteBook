@@ -14,12 +14,12 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $review = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($review)) {
             $request->session()->regenerate();
             return redirect()->route('AllMenus.menu');
         }
