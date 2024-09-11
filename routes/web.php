@@ -22,10 +22,19 @@ Route::get('/AllMenus/menu', [MenuController::class, 'index'])->middleware(\App\
 
 Route::get('/AllMenus/creatMenu',[MenuController::class,'create'])->name('AllMenus.createMenu');
 Route::post('/AllMenus/creatMenu', [MenuController::class, 'store'])->name('AllMenus.createMenu');
-Route::get('/AllMenus/edit',[MenuController::class,'edit'])->name('AllMenus.edit');
-Route::get('/AllMenus/menu', [MenuController::class, 'index'])->name('AllMenus.menu');
 
 
+/// صفحه ویرایش منوها - بدون شناسه
+Route::get('/AllMenus/list', [MenuController::class, 'list'])->name('AllMenus.list');
+
+// صفحه ویرایش منوی خاص - با شناسه
+Route::get('/AllMenus/edit/{id}', [MenuController::class, 'editMenu'])->name('AllMenus.editMenu');
+
+// // عملیات بروزرسانی منو
+Route::post('/AllMenus/update/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
+
+// عملیات حذف منو
+Route::delete('/AllMenus/list/{id}', [MenuController::class, 'destroy'])->name('AllMenus.destroy');
 
 
 Route::post('/Tag/addTag', [TagController::class, 'store'])->name('Tag.addTag');

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
 
     <style>
@@ -73,6 +73,28 @@
             font-family: initial;
             color: #030107;
         }
+
+        #menu {
+            font-family: initial;
+            color: #030107;
+            font-size: 22px;
+        }
+
+        .jstree-icon.jstree-folder {
+            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-folder.png') no-repeat center center;
+        }
+
+        .jstree-icon.jstree-file {
+            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-file.png') no-repeat center center;
+        }
+
+        .jstree-icon.jstree-closed {
+            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-closed.png') no-repeat center center;
+        }
+
+        .jstree-icon.jstree-open {
+            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-open.png') no-repeat center center;
+        }
     </style>
 </head>
 
@@ -80,54 +102,121 @@
     @extends('Layouts.app')
 
     @section('content')
-    @php
-    $hideBackButton=true;
-    @endphp
+        @php
+            $hideBackButton = true;
+        @endphp
+
         <div class="menu-container">
-            <div class="icon-box">
+             <div class="icon-box">
                 <a id="a" href="{{ route('AllMenus.createMenu') }}"><i class="bi  bi-folder-plus"></i> Create New Menu</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('AllMenus.edit')}}"><i class="bi bi-pencil-square"></i> Edit Menu</a>
+                <a id="a" href="{{ route('AllMenus.list') }}">
+                    <i class="bi bi-list-columns"></i> Edit Menus
+                </a>
+            </div>
+
+           
+            <div class="icon-box">
+                <a id="a" href="{{ route('Tag.addTag') }}"><i class="bi bi-tag"></i> Add A New Tag</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('Tag.addTag')}}"><i class="bi bi-tag"></i> Add A New Tag</a>
+                <a id="a" href="{{ route('Share.sharedMe') }}"><i class="bi bi-share-fill"></i> Shared With Me Menus</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{route('Share.sharedMe')}}"><i class="bi bi-share-fill"></i> Shared With Me Menus</a>
-            </div>
-            <div class="icon-box">
-                <a id="a" href="{{route('Share.sharedOther')}}"><i class="bi bi-folder-symlink"></i> Shared With Others</a>
+                <a id="a" href="{{ route('Share.sharedOther') }}"><i class="bi bi-folder-symlink"></i> Shared With Others</a>
             </div>
         </div>
 
         <div class="sidebar">
-            <h5>Menu</h5>
+            <h4 id="menu">Your Menus : </h4>
             <div id="jstree">
                 <ul>
-                    <li>Submenu 1
-                        <ul>
-                            <li>Sub-submenu 1</li>
-                            <li>Sub-submenu 2</li>
-                        </ul>
-                    </li>
-                    <li>Submenu 2</li>
+                    @foreach ($menus as $menu)
+                        @if ($menu->parent_id == null)
+                            <li>
+                                {{ $menu->name }}
+                                @if ($menu->children->isNotEmpty())
+                                    <ul>
+                                        @foreach ($menu->children as $child)
+                                            <li>
+                                                {{ $child->name }}
+                                                @if ($child->children->isNotEmpty())
+                                                    <ul>
+                                                        @foreach ($child->children as $grandchild)
+                                                            <li>
+                                                                {{ $grandchild->name }}
+                                                                @if ($grandchild->children->isNotEmpty())
+                                                                    <ul>
+                                                                        @foreach ($grandchild->children as $greatGrandchild)
+                                                                            <li>{{ $greatGrandchild->name }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @endif
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
-        </div>
-    
+            
         <script>
-            $(function() {
-                $('#jstree').jstree({
-                    "core": {
-                        "themes": {
-                            "variant": "large"
-                        }
-                    }
-                });
-            });
+         $(function() {
+    $('#jstree').jstree({
+        "core": {
+            "themes": {
+                "variant": "large"
+            },
+            "data": function(obj, callback) {
+                var data = [
+                    @foreach ($menus as $menu)
+                        @if ($menu->parent_id == null)
+                            {
+                                "text": "{{ $menu->name }}",
+                                "icon": "{{ $menu->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                "children": [
+                                    @foreach ($menu->children as $child)
+                                        {
+                                            "text": "{{ $child->name }}",
+                                            "icon": "{{ $child->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                            "children": [
+                                                @foreach ($child->children as $grandchild)
+                                                    {
+                                                        "text": "{{ $grandchild->name }}",
+                                                        "icon": "{{ $grandchild->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                                        "children": [
+                                                            @foreach ($grandchild->children as $greatGrandchild)
+                                                                {
+                                                                    "text": "{{ $greatGrandchild->name }}",
+                                                                    "icon": "jstree-file"
+                                                                }
+                                                            @endforeach
+                                                        ]
+                                                    }
+                                                @endforeach
+                                            ]
+                                        },
+                                    @endforeach
+                                ]
+                            },
+                        @endif
+                    @endforeach
+                ];
+                callback(data);
+            }
+        }
+    });
+});
+
+        
         </script>
     @endsection
 </body>
-
 </html>
