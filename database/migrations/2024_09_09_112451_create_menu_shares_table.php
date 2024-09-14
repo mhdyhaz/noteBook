@@ -4,26 +4,37 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateMenuSharesTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('shares', function (Blueprint $table) {
+        Schema::create('menu_shares', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('menu_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('shared_by')->nullable();  // اگر بخواهید اطلاعات کاربری که اشتراک گذاشته را هم داشته باشید
+
+            // تعریف کلیدهای خارجی با onDelete('cascade')
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('shared_by')->references('id')->on('users')->onDelete('set null');  // اگر حذف شود مقدار null بگیرد
+
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('shares');
+        Schema::dropIfExists('menu_shares');
     }
-};
+}

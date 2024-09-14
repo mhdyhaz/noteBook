@@ -24,25 +24,25 @@ Route::get('/AllMenus/creatMenu',[MenuController::class,'create'])->name('AllMen
 Route::post('/AllMenus/creatMenu', [MenuController::class, 'store'])->name('AllMenus.createMenu');
 
 
-/// صفحه ویرایش منوها - بدون شناسه
 Route::get('/AllMenus/list', [MenuController::class, 'list'])->name('AllMenus.list');
-
-// صفحه ویرایش منوی خاص - با شناسه
 Route::get('/AllMenus/edit/{id}', [MenuController::class, 'editMenu'])->name('AllMenus.editMenu');
-
-// // عملیات بروزرسانی منو
 Route::post('/AllMenus/update/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
-
-// عملیات حذف منو
 Route::delete('/AllMenus/list/{id}', [MenuController::class, 'destroy'])->name('AllMenus.destroy');
 
 
 Route::post('/Tag/addTag', [TagController::class, 'store'])->name('Tag.addTag');
 Route::get('/Tag/addTag', [TagController::class, 'index'])->name('Tag.addTag');
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/Share/shareMenu', [UserController::class, 'shareMenu'])->name('Share.shareMenu');
+    Route::post('/check-email', [UserController::class, 'checkEmail']);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/Share/sharedMe', [UserController::class, 'receivedSharedMenus'])->name('Share.sharedMe');
+    Route::post('/Share/sharedMe', [UserController::class, 'removeSharedMenu'])->name('Share.sharedMe');
+});
 
 
 
-Route::get('/Share/sharedMe', [UserController::class, 'sharedMe'])->name('Share.sharedMe');
-Route::get('/Share/sharedOther', [UserController::class, 'sharedOther'])->name('Share.sharedOther');
-Route::post('/Share/shareMenu', [UserController::class, 'shareMenu'])->name('menu.share');
+

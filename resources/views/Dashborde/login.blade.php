@@ -12,8 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 89vh;
-            
-          
+          text-align: right;
         }
 
         .login-form {
@@ -21,7 +20,7 @@
             
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)  ;
+            box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
             width: 32rem;
             display: flex;
             flex-direction: column;
@@ -47,6 +46,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 13px;
+            text-align: right;
             
         }
 
@@ -78,7 +78,7 @@
     @endphp
         <div class="login-container">
             <div class="login-form">
-                <h2>Login</h2>
+                <h2>ورود</h2>
                 <form method="POST" action="{{ route('Dashborde.login') }}">
                     @csrf
                     @if ($errors->any())
@@ -91,15 +91,15 @@
                     </div>
                 @endif
                     <div>
-                        <label for="email">Email</label>
-                        <input type="text" id="email" name="email">
+                        <label for="email">ایمیل</label>
+                        <input style="text-align: left;" type="text" id="email" name="email">
                     </div>
                     <div>
-                        <label for="password">Password</label>
+                        <label for="password">رمزعبور</label>
                         <input type="password" id="password" name="password">
                     </div>
                     <div>
-                        <button type="submit">Login</button>
+                        <button type="submit">ورود</button>
                     </div>
                 </form>
             </div>

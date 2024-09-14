@@ -102,6 +102,6 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
         $menu->delete();
 
-        return redirect()->route('AllMenus.menu');
+        return redirect()->route('AllMenus.list');
     }
 }

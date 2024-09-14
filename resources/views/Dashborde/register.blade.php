@@ -14,6 +14,7 @@
             height: 90vh;
             position: relative;
             z-index: 1;
+            text-align: right;
         }
 
         .register-background {
@@ -33,7 +34,7 @@
 
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
             width: 32rem;
             display: flex;
             flex-direction: column;
@@ -61,6 +62,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 13px;
+            text-align: right;
         }
 
         .register-form button[type="submit"] {
@@ -94,7 +96,7 @@
         <div class="register-container">
             <di class="register-background"></di>
             <div class="register-form">
-                <h2>Register</h2>
+                <h2>ثبت نام</h2>
                     <form method="POST" action="{{ route('Dashborde.register') }}">
                         @csrf
                         @if ($errors->any())
@@ -107,23 +109,23 @@
                             </div>
                         @endif
                         <div>
-                            <label for="name">Name</label>
+                            <label for="name">اسم</label>
                             <input type="text" id="name" name="name" required autofocus>
                         </div>
                         <div>
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email">ایمیل</label>
+                            <input style="text-align: left;" type="email" id="email" name="email" required>
                         </div>
                         <div>
-                            <label for="password">Password</label>
+                            <label for="password">رمزعبور</label>
                             <input type="password" id="password" name="password" required>
                         </div>
                         <div>
-                            <label for="password_confirmation">Confirm Password</label>
+                            <label for="password_confirmation">تکرار رمزعبور</label>
                             <input type="password" id="password_confirmation" name="password_confirmation" required>
                         </div>
                         <div>
-                            <button type="submit">Register</button>
+                            <button type="submit">ثبت نام</button>
                         </div>
                     </form>
             </div>

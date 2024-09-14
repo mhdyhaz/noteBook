@@ -15,6 +15,7 @@
             height: 50vh;
             position: relative;
             z-index: 1;
+            text-align: right;
         }
 
         #cM {
@@ -31,22 +32,14 @@
         .menu-form {
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
             width: 32rem;
             display: flex;
             flex-direction: column;
             z-index: 2;
         }
 
-        .menu-form {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 32rem;
-            display: flex;
-            flex-direction: column;
-            z-index: 2;
-        }
+  
         
 
         .menu-form label {
@@ -61,7 +54,8 @@
             padding: 4px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 5px;           
+            text-align: right;
             font-size: 13px;
         }
 
@@ -90,7 +84,7 @@
 
 
     @section('content')
-        <h2 id="cM"> Add A Tag</h2>
+        <h2 id="cM"> افزودن تگ</h2>
         <div class="menu-container">
         
             <div class="menu-form">
@@ -98,11 +92,11 @@
                     {{--  @csrfمهم --}}
                     @csrf
                     <div>
-                        <label for="name">Name</label>
+                        <label for="name">اسم</label>
                         <input type="text" name="name" required autofocus>
                     </div>
                     <div>
-                        <button type="submit">Create</button>
+                        <button type="submit">ثبت</button>
                     </div>
                 </form>
                 

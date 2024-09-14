@@ -12,6 +12,7 @@
         font-family: initial;
         color: black;
         text-align: center;
+        width: 75rem;
     }
 
     #lM {
@@ -21,6 +22,14 @@
         left: 45rem;
 
     }
+#edit{
+ background-color: rgb(38, 38, 148);
+ padding: 3px 9px;
+ margin: 2px 31px;
+}
+#delete{
+    padding: 3px 14px;
+}
 </style>
 
 <body>
@@ -31,25 +40,30 @@
         <div class="container mt-5">
             <div class="list-container">
 
-                <h1 id="lM">List Menus</h1>
-                <table class="table table-striped table-hover">
+                <h1 id="lM">لیست منوها</h1>
+                <table  class="table table-striped table-hover">
 
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Parent Menu</th>
-                            <th>Tags</th>
-                            <th>Actions</th>
+                            <th>عملیات</th>
+                            <th>تگ</th>
+                            <th>منوی اصلی</th>
+                            <th>نام منو</th>
+                            <th>آیدی</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach ($menus as $menu)
                             <tr>
-                                <td>{{ $menu->id }}</td>
-                                <td>{{ $menu->name }}</td>
-                                <td>{{ optional($menu->parent)->name }}</td>
+                                <td>
+                                    <a id="edit" href="{{ route('AllMenus.editMenu', $menu->id) }}"
+                                        class="btn btn-primary btn-sm">ویرایش</a>
+                                    <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal-{{ $menu->id }}">حذف</button>
+                                </td>
+                              
+                               
                                 <td>
                                     @foreach ($menu->tags as $tag)
                                         {{ $tag->name }}@if (!$loop->last)
@@ -57,12 +71,9 @@
                                         @endif
                                     @endforeach
                                 </td>
-                                <td>
-                                    <a href="{{ route('AllMenus.editMenu', $menu->id) }}"
-                                        class="btn btn-primary btn-sm">Edit</a>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal-{{ $menu->id }}">Delete</button>
-                                </td>
+                                <td>{{ optional($menu->parent)->name }}</td>
+                                <td>{{ $menu->name }}</td>
+                                <td>{{ $menu->id }}</td>
                             </tr>
 
                             <div class="modal fade" id="deleteModal-{{ $menu->id }}" tabindex="-1"
@@ -70,22 +81,22 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel-{{ $menu->id }}">Delete Menu
+                                            <h5 style="position: relative; left: 13rem;" class="modal-title" id="deleteModalLabel-{{ $menu->id }}">حذف منو
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete the menu "{{ $menu->name }}"?
+                                        <div  style="text-align: center;"  class="modal-body">
+                                            آیامیخواهی منو   "{{ $menu->name }}"  حذف شود؟   
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button   style="position: relative; padding: 4px 15px;right: 355px; type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">لغو</button>
                                             <form action="{{ route('AllMenus.destroy', $menu->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button  style="padding: 4px 9px;" type="submit" class="btn btn-danger">حذف</button>
                                             </form>
                                         </div>
                                     </div>

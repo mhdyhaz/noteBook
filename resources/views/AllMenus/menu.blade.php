@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+    <!-- External Libraries -->
+   
 
     <style>
         body {
             background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
             height: 100vh;
             overflow: hidden;
         }
@@ -22,25 +19,20 @@
         .menu-container {
             text-align: center;
             position: absolute;
-            top: 42%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 44rem;
             display: flex;
-            flex-wrap: unset;
-            gap: 21px;
+            gap: 20px;
         }
 
         .icon-box {
             border: 2px solid #3000dd;
             border-radius: 8px;
-            padding: 19px;
-            box-shadow: 0 4px 8px rgba(23, 22, 22, 0.55);
-            flex: 1;
-            max-width: 132px;
-            margin: 1px;
+            padding: 20px;
+            max-width: 120px;
             background: #f2f0fd7a;
-            transition: border-width 0.1s ease, box-shadow 0.1s ease;
+            transition: all 0.3s;
         }
 
         .icon-box:hover {
@@ -55,17 +47,16 @@
 
         .sidebar {
             position: fixed;
-            bottom: 140px;
-            left: 50px;
-            padding: 20px;
-            border-radius: 8px;
-            width: 250px;
-            max-height: calc(100vh - 50px);
+            bottom: 9rem;
+            width: 92rem;
             overflow-y: auto;
+
         }
 
         #jstree {
             margin: 35px 7px 33px 27px;
+            text-align: right;
+            direction: rtl;
         }
 
         #a {
@@ -78,58 +69,63 @@
             font-family: initial;
             color: #030107;
             font-size: 22px;
+            text-align: right;
         }
 
-        .jstree-icon.jstree-folder {
-            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-folder.png') no-repeat center center;
+        .modal-content {
+            border-radius: 10px;
+            text-align: center;
         }
 
-        .jstree-icon.jstree-file {
-            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-file.png') no-repeat center center;
+        .modal-title {
+            font-weight: bold;
+            color: #343a40;
         }
-
-        .jstree-icon.jstree-closed {
-            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-closed.png') no-repeat center center;
-        }
-
-        .jstree-icon.jstree-open {
-            background: url('https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/files/jstree-open.png') no-repeat center center;
-        }
+      
     </style>
 </head>
 
 <body>
+    <!-- Layout Extension -->
     @extends('Layouts.app')
 
     @section('content')
         @php
             $hideBackButton = true;
         @endphp
-
+     @if ($errors->any())
+     <div class="alert alert-danger">
+         <ul>
+             {{-- پیام ارور برا اینکه از اعتبارسنجی استفاده شد --}}
+             @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+             @endforeach
+         </ul>
+     </div>
+ @endif
+        <!-- Icon Menu -->
         <div class="menu-container">
-             <div class="icon-box">
-                <a id="a" href="{{ route('AllMenus.createMenu') }}"><i class="bi  bi-folder-plus"></i> Create New Menu</a>
+            {{-- <div class="icon-box">
+                <a id="a" href="{{ route('Share.sharedOther') }}"><i
+                        class="bi bi-share-fill"></i><br>اشتراک‌گذاری</a>
+            </div> --}}
+            <div class="icon-box">
+                <a id="a" href="{{ route('Share.sharedMe') }}"><i class="bi bi-folder-symlink"></i><br>اشتراک گذاشته شده با من</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{ route('AllMenus.list') }}">
-                    <i class="bi bi-list-columns"></i> Edit Menus
-                </a>
-            </div>
-
-           
-            <div class="icon-box">
-                <a id="a" href="{{ route('Tag.addTag') }}"><i class="bi bi-tag"></i> Add A New Tag</a>
+                <a id="a" href="{{ route('Tag.addTag') }}"><i class="bi bi-tag"></i><br>تگ جدید</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{ route('Share.sharedMe') }}"><i class="bi bi-share-fill"></i> Shared With Me Menus</a>
+                <a id="a" href="{{ route('AllMenus.list') }}"><i class="bi bi-list-columns"></i><br>لیست منوها</a>
             </div>
             <div class="icon-box">
-                <a id="a" href="{{ route('Share.sharedOther') }}"><i class="bi bi-folder-symlink"></i> Shared With Others</a>
+                <a id="a" href="{{ route('AllMenus.createMenu') }}"><i class="bi bi-folder-plus"></i><br>منوی
+                    جدید</a>
             </div>
         </div>
 
         <div class="sidebar">
-            <h4 id="menu">Your Menus : </h4>
+            <h4 id="menu">:منوهای من </h4>
             <div id="jstree">
                 <ul>
                     @foreach ($menus as $menu)
@@ -166,36 +162,63 @@
                     @endforeach
                 </ul>
             </div>
-            
+        </div>
+
+        <!-- Modal for Sharing Menu -->
+        <div class="modal fade" id="shareMenuModal" tabindex="-1" aria-labelledby="shareMenuModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+                        <h5  style="position: relative;left: 154px;" class="modal-title" id="shareMenuModalLabel">اشتراک‌گذاری منو</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="shareMenuForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">ایمیل کاربر</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <input type="hidden" id="menuId">
+                            <button style="position: relative;left: 199px"  type="submit" class="btn btn-primary">ارسال</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Scripts -->
         <script>
-         $(function() {
-    $('#jstree').jstree({
-        "core": {
-            "themes": {
-                "variant": "large"
-            },
-            "data": function(obj, callback) {
-                var data = [
-                    @foreach ($menus as $menu)
-                        @if ($menu->parent_id == null)
-                            {
-                                "text": "{{ $menu->name }}",
-                                "icon": "{{ $menu->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
-                                "children": [
-                                    @foreach ($menu->children as $child)
+            function openShareModal(menuId) {
+                $('#menuId').val(menuId);
+                $('#shareMenuModal').modal('show');
+            }
+
+
+            $(function() {
+                $('#jstree').jstree({
+                    "core": {
+                        "themes": {
+                            "variant": "large"
+                        },
+                        "data": function(obj, callback) {
+                            var data = [
+                                @foreach ($menus as $menu)
+                                    @if ($menu->parent_id == null)
                                         {
-                                            "text": "{{ $child->name }}",
-                                            "icon": "{{ $child->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                            "text": "{{ $menu->name }} <i class='bi bi-share-fill share-icon' onclick='openShareModal({{ $menu->id }})'></i>",
+                                            "icon": "{{ $menu->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
                                             "children": [
-                                                @foreach ($child->children as $grandchild)
+                                                @foreach ($menu->children as $child)
                                                     {
-                                                        "text": "{{ $grandchild->name }}",
-                                                        "icon": "{{ $grandchild->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                                        "text": "{{ $child->name }} <i class='bi bi-share-fill share-icon' onclick='openShareModal({{ $child->id }})'></i>",
+                                                        "icon": "{{ $child->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
                                                         "children": [
-                                                            @foreach ($grandchild->children as $greatGrandchild)
+                                                            @foreach ($child->children as $grandchild)
                                                                 {
-                                                                    "text": "{{ $greatGrandchild->name }}",
-                                                                    "icon": "jstree-file"
+                                                                    "text": "{{ $grandchild->name }} <i class='bi bi-share-fill share-icon' onclick='openShareModal({{ $grandchild->id }})'></i>",
+                                                                    "icon": "{{ $grandchild->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
+                                                                    "children": []
                                                                 }
                                                             @endforeach
                                                         ]
@@ -203,20 +226,66 @@
                                                 @endforeach
                                             ]
                                         },
-                                    @endforeach
-                                ]
-                            },
-                        @endif
-                    @endforeach
-                ];
-                callback(data);
+                                    @endif
+                                @endforeach
+                            ];
+                            callback(data);
+                        }
+                    }
+                });
+            });
+
+            // Handling form submission
+            $('#shareMenuForm').on('submit', function(event) {
+    event.preventDefault();
+
+    var email = $('#email').val();
+    var menuId = $('#menuId').val();
+
+    // بررسی وجود ایمیل
+    $.ajax({
+        url: '/check-email',
+        method: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            email: email
+        },
+        success: function(response) {
+            if (response.success) {
+                // ایمیل معتبر است، حالا منو را ارسال کنید
+                $.ajax({
+                    url: '{{ route('Share.shareMenu') }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        email: email,
+                        menu_id: menuId
+                    },
+                    success: function(response) {
+                        if (response.message === 'منو با موفقیت به اشتراک گذاشته شد') {
+                            alert('منو با موفقیت به ایمیل ارسال شد.');
+                            $('#shareMenuModal').modal('hide');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
+                        alert('خطایی رخ داده است. دوباره تلاش کنید.');
+                    }
+                });
+            } else {
+                alert(response.message);
             }
+        },
+        error: function(xhr) {
+            console.error(xhr.responseText);
+            alert('خطایی در بررسی ایمیل رخ داده است.');
         }
     });
 });
 
-        
+
         </script>
     @endsection
 </body>
-</html>

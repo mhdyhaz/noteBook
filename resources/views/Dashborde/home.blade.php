@@ -45,8 +45,8 @@ $hideBackButton=true;
 @endphp
 
     <div class="button-container">
-        <button onclick="window.location.href='{{ route('Dashborde.login') }}'">Login</button>
-        <button onclick="window.location.href='{{ route('Dashborde.register') }}'">Register</button>
+        <button onclick="window.location.href='{{ route('Dashborde.login') }}'">ورود</button>
+        <button onclick="window.location.href='{{ route('Dashborde.register') }}'">ثبت نام</button>
     </div>
     @endsection
 
