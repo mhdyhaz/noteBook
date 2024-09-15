@@ -34,17 +34,29 @@ class UserController extends Controller
         MenuShare::create([
             'menu_id' => $menu->id,
             'user_id' => $userToShare->id,
+            'shared_by' => Auth::id(), // ذخیره شناسه کاربر ارسال‌کننده
         ]);
-    
+        
         return response()->json(['message' => 'منو با موفقیت به اشتراک گذاشته شد']);
     }
     
+
+
     public function sharedOther()
     {
-        $sharedMenus = Menu::whereIn('id', MenuShare::where('user_id', Auth::id())->pluck('menu_id'))->get();
-
+        // بازیابی منوهایی که توسط کاربر به اشتراک گذاشته شده‌اند
+        $sharedMenus = MenuShare::where('shared_by', Auth::id())
+                                ->with('menu', 'menu.tags', 'menu.parent', 'sharedBy')
+                                ->get();
+    
         return view('Share.sharedOther', compact('sharedMenus'));
-   }
+    }
+    
+    
+    
+    
+    
+    
    public function checkEmail(Request $request)
 {
     $request->validate([

@@ -49,18 +49,15 @@
                 <th>تگ</th>
                 <th> منوی اصلی</th>
                 <th>نام منو</th>
-                <th>ایدی</th>
+                <th>شناسه</th>
             </tr>
         </thead>
         <tbody>
             @forelse($menus as $menu)
                 <tr>
                     <td>
-                        
-                            
                             <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal-{{ $menu->id }}">حذف</button>
-                    
                     </td>
                     <td>{{ $menu->user->name }}</td>
                     <td>
@@ -81,8 +78,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 style="position: relative; left: 13rem;" class="modal-title" id="deleteModalLabel-{{ $menu->id }}">حذف منو
-                                </h5>
+                                <h5 style="position: relative; left: 13rem;" class="modal-title" id="deleteModalLabel-{{ $menu->id }}">حذف منو دریافت شده </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -105,7 +101,7 @@
                 
             @empty
                 <tr>
-                    <td colspan="4" class="text-center">منویی ارسال نشده است</td>
+                    <td colspan="6" class="text-center">منویی دریافت نشده</td>
                 </tr>
             @endforelse
             
@@ -113,3 +109,4 @@
     </table>
 </div>
 @endsection
+  

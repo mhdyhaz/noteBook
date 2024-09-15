@@ -105,10 +105,10 @@
  @endif
         <!-- Icon Menu -->
         <div class="menu-container">
-            {{-- <div class="icon-box">
+            <div class="icon-box">
                 <a id="a" href="{{ route('Share.sharedOther') }}"><i
                         class="bi bi-share-fill"></i><br>اشتراک‌گذاری</a>
-            </div> --}}
+            </div>
             <div class="icon-box">
                 <a id="a" href="{{ route('Share.sharedMe') }}"><i class="bi bi-folder-symlink"></i><br>اشتراک گذاشته شده با من</a>
             </div>

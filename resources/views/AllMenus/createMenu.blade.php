@@ -78,7 +78,7 @@
         <h2 id="cM">ایجاد منو جدید</h2>
         <div class="menu-container">
             <div class="menu-form">
-                <form method="POST" action="{{ route('AllMenus.createMenu') }}">
+                <form autocomplete="off" method="POST" action="{{ route('AllMenus.createMenu') }}">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -114,21 +114,13 @@
                         <button type="submit">ثبت</button>
                     </div>
                 </form>
+        
             </div>
         </div>
     @endsection
 
-    <!-- اضافه کردن جاوا اسکریپت select2 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#parent-menu').select2({
-                placeholder: 'انتخاب کنید',
-                width: '100%'
-            });
-        });
-    </script>
+    
+   
 </body>
 
 </html>

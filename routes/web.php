@@ -39,6 +39,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/Share/sharedOther', [UserController::class, 'sharedOther'])->name('Share.sharedOther');
+    Route::post('/check-email', [UserController::class, 'checkEmail']);
+});
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/Share/sharedMe', [UserController::class, 'receivedSharedMenus'])->name('Share.sharedMe');
     Route::post('/Share/sharedMe', [UserController::class, 'removeSharedMenu'])->name('Share.sharedMe');
 });

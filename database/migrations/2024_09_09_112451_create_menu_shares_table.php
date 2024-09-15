@@ -17,12 +17,12 @@ class CreateMenuSharesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('shared_by')->nullable();  // اگر بخواهید اطلاعات کاربری که اشتراک گذاشته را هم داشته باشید
+            $table->unsignedBigInteger('shared_by')->nullable();
 
             // تعریف کلیدهای خارجی با onDelete('cascade')
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('shared_by')->references('id')->on('users')->onDelete('set null');  // اگر حذف شود مقدار null بگیرد
+            $table->foreign('shared_by')->references('id')->on('users')->onDelete('set null');  
 
             $table->timestamps();
         });

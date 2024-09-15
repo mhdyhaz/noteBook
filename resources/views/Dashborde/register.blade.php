@@ -97,7 +97,7 @@
             <di class="register-background"></di>
             <div class="register-form">
                 <h2>ثبت نام</h2>
-                    <form method="POST" action="{{ route('Dashborde.register') }}">
+                    <form autocomplete="off"  method="POST" action="{{ route('Dashborde.register') }}">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -110,7 +110,7 @@
                         @endif
                         <div>
                             <label for="name">اسم</label>
-                            <input type="text" id="name" name="name" required autofocus>
+                            <input  type="text" id="name" name="name" required autofocus>
                         </div>
                         <div>
                             <label for="email">ایمیل</label>

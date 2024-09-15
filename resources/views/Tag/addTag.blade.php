@@ -88,7 +88,7 @@
         <div class="menu-container">
         
             <div class="menu-form">
-                <form method="POST" action="{{ route('Tag.addTag') }}">
+                <form autocomplete="off"  method="POST" action="{{ route('Tag.addTag') }}">
                     {{--  @csrfمهم --}}
                     @csrf
                     <div>
