@@ -20,13 +20,22 @@ Route::post('/Dashborde/register', [RegisterController::class, 'register']);
 
 Route::get('/AllMenus/menu', [MenuController::class, 'index'])->middleware(\App\Http\Middleware\Authenticate::class)->name('AllMenus.menu');
 
-Route::get('/AllMenus/creatMenu',[MenuController::class,'create'])->name('AllMenus.createMenu');
-Route::post('/AllMenus/creatMenu', [MenuController::class, 'store'])->name('AllMenus.createMenu');
+// نمایش فرم ایجاد منو
+Route::get('/AllMenus/createMenu', [MenuController::class, 'create'])->name('AllMenus.createMenu');
 
+// ذخیره منو
+Route::post('/AllMenus/createMenu', [MenuController::class, 'store'])->name('AllMenus.store');
 
+// نمایش لیست منوها
 Route::get('/AllMenus/list', [MenuController::class, 'list'])->name('AllMenus.list');
+
+// نمایش فرم ویرایش منو
 Route::get('/AllMenus/edit/{id}', [MenuController::class, 'editMenu'])->name('AllMenus.editMenu');
-Route::post('/AllMenus/update/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
+
+// به‌روزرسانی منو
+Route::put('/AllMenus/edit/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
+
+// حذف منو
 Route::delete('/AllMenus/list/{id}', [MenuController::class, 'destroy'])->name('AllMenus.destroy');
 
 
@@ -47,7 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Share/sharedMe', [UserController::class, 'receivedSharedMenus'])->name('Share.sharedMe');
     Route::post('/Share/sharedMe', [UserController::class, 'removeSharedMenu'])->name('Share.sharedMe');
 });
-
 
 
 

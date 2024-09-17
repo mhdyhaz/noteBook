@@ -71,7 +71,7 @@ class UserController extends Controller
         return response()->json(['success' => false, 'message' => 'کاربری با این ایمیل یافت نشد'], 404);
     }
 }
-// در فایل UserController.php
+
 public function receivedSharedMenus()
 {
     // دریافت منوهایی که به کاربر ارسال شده‌اند
