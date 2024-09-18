@@ -10,38 +10,36 @@ class Menu extends Model
 {
     protected $fillable = ['name', 'parent_id', 'user_id'];
 
-    /**
-     * Get the user that owns the menu.
-     */
-
-     // اشاره مبکنهmenu داره به کلاس اینجاthis
-
-     public function user(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * The tags that belong to the menu.
-     */
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'menu_tag');
+        return $this->belongsToMany(Tag::class);
     }
 
-    /**
-     * Get the parent menu.
-     */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Menu::class, 'parent_id');
     }
 
-    /**
-     * Get the child menus.
-     */
     public function children(): HasMany
     {
         return $this->hasMany(Menu::class, 'parent_id');
     }
+    public function sharedBy(): BelongsToMany
+{
+    return $this->belongsToMany(User::class, 'menu_shares', 'menu_id', 'user_id')
+                ->withPivot('shared_by')
+                ->withTimestamps();
 }
+
+public function shares(): HasMany
+{
+    return $this->hasMany(MenuShare::class);
+}
+
+}
+

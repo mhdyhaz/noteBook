@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('parent_id')->nullable()->constrained('menus');
+            $table->foreignId('parent_id')->nullable()->constrained('menus')->onDelete('cascade');
+
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

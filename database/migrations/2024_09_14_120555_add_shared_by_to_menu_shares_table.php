@@ -20,4 +20,4 @@ class AddSharedByToMenuSharesTable extends Migration
             $table->dropColumn('shared_by');
         });
     }
-}
+};

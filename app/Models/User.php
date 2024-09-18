@@ -16,16 +16,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Menu::class);
     }
+ 
 
-    public function sharedMenus(): HasMany
-    {
-        return $this->hasMany(MenuShare::class, 'shared_by');
+        public function sharedMenus(): HasMany
+        {
+            return $this->hasMany(MenuShare::class, 'shared_by');
+        }
+    
+        public function receivedSharedMenus(): BelongsToMany
+        {
+            return $this->belongsToMany(Menu::class, 'menu_shares', 'user_id', 'menu_id')
+                        ->withPivot('shared_by')
+                        ->withTimestamps();
     }
+    
 
-    public function receivedSharedMenus(): BelongsToMany
-    {
-        return $this->belongsToMany(Menu::class, 'menu_shares')
-                    ->withPivot('shared_by')
-                    ->withTimestamps();
-    }
-}
+ }

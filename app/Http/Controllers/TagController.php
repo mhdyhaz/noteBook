@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,19 +9,21 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
-        return view('Tag.addTag');
+        $tags = Tag::orderBy('id', 'desc')->get();
+    
+        return view('Tag.addTag', compact('tags'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:tags,name',
+            'name' => 'required|string|unique:tags,name'
         ]);
 
-        Tag::create(['name' => $request->name]);
+        Tag::create([
+            'name' => $request->name,
+        ]);
 
-        return redirect()->back()->with('success', 'Tag created successfully!');
+        return redirect()->route('AllMenus.menu');
     }
-    
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         .menu-container {
@@ -26,9 +26,6 @@
             top: 17rem;
         }
 
-
-     
-
         .menu-form {
             padding: 20px;
             border-radius: 8px;
@@ -39,22 +36,28 @@
             z-index: 2;
         }
 
-  
-        
-
         .menu-form label {
             margin-bottom: 5px;
             font-family: initial;
             font-weight: bold;
         }
 
-        .menu-form input[type="text"],
-        .menu-form input[type="Tags"] {
+        .menu-form input[type="text"] {
             width: 100%;
             padding: 4px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 5px;           
+            border-radius: 5px;
+            text-align: right;
+            font-size: 13px;
+        }
+
+        .menu-form select {
+            width: 100%;
+            padding: 4px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             text-align: right;
             font-size: 13px;
         }
@@ -74,36 +77,46 @@
             background-color: #e5ebf0;
         }
     </style>
-
 </head>
 
 <body>
-
-
     @extends('Layouts.app')
 
-
     @section('content')
-        <h2 id="cM"> افزودن تگ</h2>
+        <h2 id="cM">افزودن تگ</h2>
         <div class="menu-container">
-        
             <div class="menu-form">
-                <form autocomplete="off"  method="POST" action="{{ route('Tag.addTag') }}">
-                    {{--  @csrfمهم --}}
+                <form autocomplete="off" method="POST" action="{{ route('Tag.addTag') }}">
                     @csrf
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div>
-                        <label for="name">اسم</label>
+                        <label for="name">اسم تگ</label>
                         <input type="text" name="name" required autofocus>
+                    </div>
+                    <div>
+                        <label for="tags">تگ‌ها</label>
+                        <inpute  name="tags[]" class="form-control"  multiple="multiple">
+                            @foreach ($tags as $tag)
+                                <label  value="{{ $tag->id}}">{{ $tag->name.'#'}}</label>
+                            @endforeach
+                        </inpute>
                     </div>
                     <div>
                         <button type="submit">ثبت</button>
                     </div>
                 </form>
-                
             </div>
         </div>
-    @endsection
 
+    @endsection
 </body>
 
 </html>

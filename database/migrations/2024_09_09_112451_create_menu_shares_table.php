@@ -23,6 +23,7 @@ class CreateMenuSharesTable extends Migration
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('shared_by')->references('id')->on('users')->onDelete('set null');  
+            
 
             $table->timestamps();
         });
@@ -37,4 +38,4 @@ class CreateMenuSharesTable extends Migration
     {
         Schema::dropIfExists('menu_shares');
     }
-}
+};

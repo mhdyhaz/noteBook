@@ -12,6 +12,7 @@ class MenuShare extends Model
     {
         return $this->belongsTo(Menu::class);
     }
+    
 
     public function user(): BelongsTo
     {
@@ -22,4 +23,5 @@ class MenuShare extends Model
     {
         return $this->belongsTo(User::class, 'shared_by');
     }
+    
 }
