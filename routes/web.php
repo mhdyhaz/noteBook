@@ -22,6 +22,8 @@ Route::get('/AllMenus/menu', [MenuController::class, 'index'])->middleware(\App\
 Route::get('/AllMenus/createMenu', [MenuController::class, 'create'])->name('AllMenus.createMenu');
 Route::post('/AllMenus/createMenu', [MenuController::class, 'store'])->name('AllMenus.store');
 Route::get('/AllMenus/list', [MenuController::class, 'list'])->name('AllMenus.list');
+
+// نمایش فرم ویرایش منو
 Route::get('/AllMenus/edit/{id}', [MenuController::class, 'editMenu'])->name('AllMenus.editMenu');
 Route::put('/AllMenus/edit/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
 Route::delete('/AllMenus/list/{id}', [MenuController::class, 'destroy'])->name('AllMenus.destroy');
