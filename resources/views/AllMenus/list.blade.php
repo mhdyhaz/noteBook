@@ -35,13 +35,7 @@
         margin-top: 1rem;
     }
 
-    thead th {
-        position: sticky;
-        top: 0;
-        background-color: #007bff;
-        color: white;
-        z-index: 1;
-    }
+
 
     #edit {
         background-color: rgb(38, 38, 148);

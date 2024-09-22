@@ -46,13 +46,13 @@
             </thead>
             <tbody>
                 @if($sharedMenus->isNotEmpty())
-                @foreach($sharedMenus as $menuShare)
-                    <tr>
-                        <td>
-                            <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal-{{ $menuShare->menu->id }}">حذف</button>
-                        </td>
-                        <td>{{ $menuShare->user->name }}</td>
+                @foreach ($sharedMenus as $menuShare)
+                <tr>
+                    <td>
+                        <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal-{{ $menuShare->menu->id }}">حذف</button>
+                    </td>
+                       <td>{{ $menuShare->user->name }}</td>
                         <td>
                             @foreach ($menuShare->menu->tags as $tag)
                                 {{ $tag->name }}@if (!$loop->last), @endif
@@ -62,24 +62,32 @@
                         <td>{{ $menuShare->menu->name }}</td>
                         <td>{{ $menuShare->menu->id }}</td>
                     </tr>
-                    <!-- Modal for delete -->
-                    <div class="modal fade" id="deleteModal-{{ $menuShare->menu->id }}" tabindex="-1"
-                         aria-labelledby="deleteModalLabel-{{ $menuShare->menu->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModalLable-{{ $menuShare->menu->id }}">حذف منو ارسال‌شده</h5>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> لغو</button>
-                                    <form action="{{ route('AllMenus.destroy', $menuShare->menu->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">حذف</button>
-                                    </form>
-                                </div>
+
+            
+                <div class="modal fade" id="deleteModal-{{ $menuShare->menu->id }}" tabindex="-1"
+                     aria-labelledby="deleteModalLabel-{{ $menuShare->menu->id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel-{{ $menuShare->menu->id }}">حذف منو ارسال‌شده</h5>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                            </div>
+                            <div class="modal-body">
+                                آیا مطمئنید که می‌خواهید منوی "{{ $menuShare->menu->name }}" را حذف کنید؟
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                                <form action="{{ route('Share.removeShared') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <input type="hidden" name="menu_id" value="{{ $menuShare->menu->id }}">
+                                    <button type="submit" class="btn btn-danger">حذف</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+          
             @else
                 <tr>
                     <td colspan="6" class="text-center">منویی ارسال نشده</td>

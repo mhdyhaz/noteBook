@@ -23,20 +23,18 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        // اعتبارسنجی
+   
         $request->validate([
             'name' => 'required',
             'parent_menu' => 'nullable|exists:menus,id',
             'tags' => 'nullable|array'
         ]);
-    
-        // ایجاد منو
+
         $menu = Auth::user()->menus()->create([
             'name' => $request->name,
             'parent_id' => $request->parent_menu,
         ]);
-    
-        // مدیریت تگ‌ها
+   
         $tagIds = [];
         if ($request->has('tags')) {
             foreach ($request->tags as $tag) {
@@ -115,12 +113,15 @@ class MenuController extends Controller
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id);
-
-        $menu->children()->delete();
-
+    
+    
+        $menu->shares()->delete(); 
+    
+      
         $menu->delete();
     
-        return redirect()->route('AllMenus.list')->with('success', 'Menu and its child menus have been successfully deleted.');
+        return redirect()->route('AllMenus.list')->with('success', 'Menu has been successfully deleted.');
     }
+    
     
 }

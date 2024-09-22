@@ -57,7 +57,7 @@ class UserController extends Controller
         return view('Share.sharedMe', compact('menus'));
     }
 
-    public function removeSharedMenu(Request $request)
+public function removeSharedMenu(Request $request)
 {
     $request->validate([
         'menu_id' => 'required|exists:menus,id',
@@ -70,24 +70,11 @@ class UserController extends Controller
              ->where('shared_by', '!=', Auth::id())  
              ->delete();
 
-    return redirect()->route('Share.sharedMe')->with('success', 'اشتراک‌گذاری منو با موفقیت حذف شد.');
+    return redirect()->route('AllMenus.menu')->with('success', 'اشتراک‌گذاری منو با موفقیت حذف شد.');
 }
 
-    public function cancelSharing(Request $request)
-    {
-        $request->validate([
-            'menu_id' => 'required|exists:menus,id',
-            'user_id' => 'required|exists:users,id',
-        ]);
-    
-        MenuShare::where('menu_id', $request->menu_id)
-                 ->where('user_id', $request->user_id)  
-                 ->where('shared_by', Auth::id()) 
-                 ->delete();
-    
-        return redirect()->route('Share.sharedOther')->with('success', 'اشتراک منو با موفقیت لغو شد.');
-    }
-        
+
+
     public function checkEmail(Request $request)
     {
         $request->validate([

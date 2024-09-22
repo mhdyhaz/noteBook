@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // رابطه خود ارجاعی.یعنی هر منو می‌تواند والد یا فرزند منوی دیگر باشد
             $table->foreignId('parent_id')->nullable()->constrained('menus')->onDelete('cascade');
-
+            // در صورت حذف یک رکورد در جدول والد (مثلاً حذف منوی والد یا کاربر)، تمام رکوردهای فرزند مرتبط به آن نیز حذف خواهند شد.
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
