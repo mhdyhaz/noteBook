@@ -17,31 +17,31 @@
             z-index: 1;
             text-align: right;
         }
+        .select2-container {
+            text-align: right;
+        }
 
-        #cM {
+        #LL {
             font-size: 30px;
             color: rgb(20, 20, 80);
             font-family: initial;
-            position: fixed;
-            top: 17rem;
+            opacity: inherit;
+            text-align: center;
         }
 
         .menu-form {
-            padding: 20px;
+            padding: 62px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 32rem;
+            width: 48rem;
             display: flex;
             flex-direction: column;
-            z-index: 2;
+            bottom: 5rem;
+            opacity: revert;
+            position: absolute;
         }
 
-        .menu-form label {
-            margin-bottom: 5px;
-            font-family: initial;
-            font-weight: bold;
-        }
-
+   
         .menu-form input[type="text"] {
             width: 100%;
             padding: 4px;
@@ -60,22 +60,27 @@
             border-radius: 5px;
             text-align: right;
             font-size: 13px;
+            background: #fff;
         }
 
         .menu-form button[type="submit"] {
             background-color: rgb(11, 11, 100);
             color: white;
-            padding: 3px 10px;
+            padding: 2px 11px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 14px;
+            font-size: 16px;
+            position: absolute;
+            margin: 14px -82px;
         }
-
+        
         .menu-form button[type="submit"]:hover {
             background-color: #e5ebf0;
         }
+       
+        
     </style>
 </head>
 
@@ -83,9 +88,10 @@
     @extends('Layouts.app')
 
     @section('content')
-        <h2 id="cM">ویرایش منو</h2>
+        
         <div class="menu-container">
             <div class="menu-form">
+                <h2 id="LL" >ویرایش منو</h2>
                 <form autocomplete="off" method="POST" action="{{ route('AllMenus.update', $menu->id) }}">
                     @csrf
                     @method('PUT')
@@ -117,7 +123,7 @@
 
                     <div class="form-group">
                         <label for="tags">تگ‌ها</label>
-                        <select name="tags[]" class="form-control select2" multiple="multiple">
+                        <select  id="select2"  name="tags[]" class="form-control select2" multiple="multiple">
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" {{ $menu->tags->contains($tag->id) ? 'selected' : '' }}>
                                     {{ $tag->name }}

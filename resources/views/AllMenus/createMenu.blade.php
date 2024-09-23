@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-   .menu-container {
+        .menu-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,22 +18,30 @@
             text-align: right;
         }
 
+        .select2-container {
+            text-align: right;
+        }
+
         #cM {
             font-size: 30px;
             color: rgb(20, 20, 80);
             font-family: initial;
-            position: fixed;
-            top: 17rem;
+            opacity: inherit;
+            text-align: center;
         }
 
+
+
         .menu-form {
-            padding: 20px;
+            padding: 62px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 32rem;
+            width: 48rem;
             display: flex;
             flex-direction: column;
-            z-index: 2;
+            bottom: 5rem;
+            opacity: revert;
+            position: absolute;
         }
 
         .menu-form label {
@@ -45,6 +53,7 @@
         .menu-form input[type="text"],
         .menu-form input[type="Tags"],
         #parent-menu {
+            background: white;
             width: 100%;
             padding: 4px;
             margin-bottom: 15px;
@@ -57,19 +66,21 @@
         .menu-form button[type="submit"] {
             background-color: rgb(11, 11, 100);
             color: white;
-            padding: 3px 10px;
+            padding: 2px 11px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 14px;
+            font-size: 16px;
+            position: absolute;
+            margin: 16px -45px;
         }
 
         .menu-form button[type="submit"]:hover {
             background-color: #e5ebf0;
         }
 
-
+      
     </style>
 </head>
 
@@ -78,20 +89,21 @@
     @extends('Layouts.app')
 
     @section('content')
-        <h2 id="cM">ایجاد منوی جدید</h2>
+
         <div class="menu-container">
             <div class="menu-form">
+                <h2 id="cM">ایجاد منوی جدید</h2>
                 <form autocomplete="off" method="POST" action="{{ route('AllMenus.store') }}">
                     @csrf
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
                         <label for="name">نام</label>
                         <input type="text" name="name" required autofocus>
@@ -99,7 +111,7 @@
 
                     <div>
                         <label for="parent-menu">منو اصلی</label>
-                        <select id="parent-menu" name="parent_menu">
+                        <select  id="parent-menu" name="parent_menu">
                             <option value="">انتخاب کنید</option>
                             @foreach ($menus as $menu)
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
@@ -109,13 +121,13 @@
 
                     <div class="form-group">
                         <label for="tags">تگ‌ها</label>
-                        <select name="tags[]" class="form-control select2" multiple="multiple">
+                        <select  name="tags[]" class="form-control select2" multiple="multiple">
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <div>
                         <button type="submit">ثبت</button>
                     </div>
@@ -130,11 +142,11 @@
                 $('.select2').select2({
                     tags: true,
                     tokenSeparators: [',', ' '],
-                    placeholder: 'تگ‌ها را انتخاب کنید یا تگ جدید اضافه کنید',
                     allowClear: true
                 });
             });
         </script>
     @endsection
 </body>
+
 </html>

@@ -4,7 +4,6 @@
 <head>
     <title>Page Title</title>
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
@@ -16,7 +15,6 @@
 
     <style>
         .header {
-
             padding: 48px 0;
             text-align: center;
             background: linear-gradient(0deg, rgb(215, 221, 240) 0%, rgb(125, 119, 168) 100%);
@@ -27,13 +25,12 @@
             overflow: hidden;
         }
 
-
-
         #b-id {
             font-size: 38px;
             text-align: center;
             color: black;
             font-family: initial;
+            display: contents;
         }
 
         #backButton[type="submit"] {
@@ -51,7 +48,6 @@
         }
 
         #logout[type="submit"] {
-
             color: white;
             border: none;
             opacity: inherit;
@@ -64,30 +60,29 @@
             left: 10px;
             font-family: initial;
         }
-
-        }
     </style>
 </head>
 
 <body>
 
     @if (!isset($hideBackButton) || !$hideBackButton)
-        <button id="backButton" type="submit" onclick="window.history.back()">بازگشت</button>
+    <button id="backButton" type="submit" onclick="window.history.back()">
+        <i class="bi bi-arrow-left"></i> 
+    </button>
     @endif
 
     @if (!isset($hidelogout) || !$hidelogout)
-        <form action="{{ route('Dashborde.home') }}" method="GET">
-            <button id="logout" type="submit">خروج</button>
-        </form>
+    <form action="{{ route('Dashborde.home') }}" method="GET">
+        <button id="logout" type="submit">
+            <i class="bi bi-box-arrow-right"></i> 
+        </button>
+    </form>
     @endif
+
     <div class="header">
         <h1 id="b-id">دفترچه یادداشت</h1>
-
     </div>
 
-
-
 </body>
-</head>
 
 </html>

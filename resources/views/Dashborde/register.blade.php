@@ -11,7 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 50vh;
             position: relative;
             z-index: 1;
             text-align: right;
@@ -32,13 +32,15 @@
 
         .register-form {
 
-            padding: 20px;
+            padding: 62px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 32rem;
+            width: 48rem;
             display: flex;
             flex-direction: column;
-            z-index: 2;
+            bottom: 3rem;
+            opacity: revert;
+            position: absolute;
         }
 
         .register-form h2 {
@@ -97,37 +99,37 @@
             <di class="register-background"></di>
             <div class="register-form">
                 <h2>ثبت نام</h2>
-                    <form autocomplete="off"  method="POST" action="{{ route('Dashborde.register') }}">
-                        @csrf
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <div>
-                            <label for="name">اسم</label>
-                            <input  type="text" id="name" name="name" required autofocus>
+                <form autocomplete="off" method="POST" action="{{ route('Dashborde.register') }}">
+                    @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div>
-                            <label for="email">ایمیل</label>
-                            <input style="text-align: left;" type="email" id="email" name="email" required>
-                        </div>
-                        <div>
-                            <label for="password">رمزعبور</label>
-                            <input type="password" id="password" name="password" required>
-                        </div>
-                        <div>
-                            <label for="password_confirmation">تکرار رمزعبور</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" required>
-                        </div>
-                        <div>
-                            <button type="submit">ثبت نام</button>
-                        </div>
-                    </form>
+                    @endif
+                    <div>
+                        <label for="name">اسم</label>
+                        <input type="text" id="name" name="name" required autofocus>
+                    </div>
+                    <div>
+                        <label for="email">ایمیل</label>
+                        <input style="text-align: left;" type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="password">رمزعبور</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div>
+                        <label for="password_confirmation">تکرار رمزعبور</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" required>
+                    </div>
+                    <div>
+                        <button type="submit">ثبت نام</button>
+                    </div>
+                </form>
             </div>
         </div>
     @endsection

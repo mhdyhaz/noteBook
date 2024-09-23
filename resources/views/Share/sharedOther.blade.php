@@ -9,18 +9,23 @@
     <style>
         .share-container {
             font-family: initial;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 70rem;
-            text-align: center;
+            color: black;
+            width: 80rem;
+            margin: auto;
+            margin-bottom: 30rem;
+            background-color: #f8f9fa;
+            padding: 6px 62px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.41);
+            height: 42rem;
+            position: absolute;
+            top: 9rem;
+            text-align: center; 
         }
 
         #lM {
             font-size: 30px;
-            position: fixed;
-            top: 13rem;
-            left: 41rem;
+            margin-bottom: 2rem; /* Increased margin-bottom to create space */
         }
     </style>
 
@@ -31,7 +36,21 @@
 @section('content')
 
     <div class="container">
-        <h2 id="lm">منوهای ارسال‌شده</h2>
+        <div class="share-container">
+        
+        <h2 id="lM">منوهای ارسال‌شده</h2>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <table style="text-align: center;" class="table table-striped table-hover">
             <thead>
@@ -63,39 +82,42 @@
                         <td>{{ $menuShare->menu->id }}</td>
                     </tr>
 
-            
-                <div class="modal fade" id="deleteModal-{{ $menuShare->menu->id }}" tabindex="-1"
-                     aria-labelledby="deleteModalLabel-{{ $menuShare->menu->id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel-{{ $menuShare->menu->id }}">حذف منو ارسال‌شده</h5>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
-                            </div>
-                            <div class="modal-body">
-                                آیا مطمئنید که می‌خواهید منوی "{{ $menuShare->menu->name }}" را حذف کنید؟
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
-                                <form action="{{ route('Share.removeShared') }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <input type="hidden" name="menu_id" value="{{ $menuShare->menu->id }}">
-                                    <button type="submit" class="btn btn-danger">حذف</button>
-                                </form>
+                    <!-- Modal for Delete -->
+                    <div class="modal fade" id="deleteModal-{{ $menuShare->menu->id }}" tabindex="-1"
+                         aria-labelledby="deleteModalLabel-{{ $menuShare->menu->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel-{{ $menuShare->menu->id }}">حذف منو ارسال‌شده</h5>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                                </div>
+                                <div class="modal-body">
+                                    آیا مطمئنید که می‌خواهید منوی "{{ $menuShare->menu->name }}" را از {{ $menuShare->user->name }} حذف کنید؟
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
+                                    <form action="{{ route('shared-menu.remove-as-sender') }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="menu_id" value="{{ $menuShare->menu->id }}">
+                                        <input type="hidden" name="receiver_id" value="{{ $menuShare->user->id }}">
+                                        <button type="submit" class="btn btn-danger">حذف</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
           
-            @else
-                <tr>
-                    <td colspan="6" class="text-center">منویی ارسال نشده</td>
-                </tr>
-            @endif
+                @else
+                    <tr>
+                        <td colspan="6" class="text-center">منویی ارسال نشده</td>
+                    </tr>
+                @endif
             
             </tbody>
         </table>
     </div>
+</div>
 
 @endsection

@@ -9,21 +9,24 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::orderBy('id', 'desc')->get();
-    
+        $tags = Tag::where('user_id', auth()->id())->orderBy('id', 'desc')->get();
         return view('Tag.addTag', compact('tags'));
     }
+    
+    
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|unique:tags,name'
         ]);
-
+    
         Tag::create([
             'name' => $request->name,
+            'user_id' => auth()->id(), // ذخیره user_id برای هر تگ
         ]);
-
+    
         return redirect()->route('AllMenus.menu');
     }
+    
 }

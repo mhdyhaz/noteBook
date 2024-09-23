@@ -22,18 +22,20 @@
             font-size: 30px;
             color: rgb(20, 20, 80);
             font-family: initial;
-            position: fixed;
-            top: 17rem;
+            opacity: inherit;
+            text-align: center;
         }
 
         .menu-form {
-            padding: 20px;
+            padding: 62px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 32rem;
+            width: 48rem;
             display: flex;
             flex-direction: column;
-            z-index: 2;
+            bottom: 8rem;
+            opacity: revert;
+            position: absolute;
         }
 
         .menu-form label {
@@ -65,12 +67,14 @@
         .menu-form button[type="submit"] {
             background-color: rgb(11, 11, 100);
             color: white;
-            padding: 3px 10px;
+            padding: 2px 11px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 14px;
+            font-size: 16px;
+            position: absolute;
+            margin: 16px -45px;
         }
 
         .menu-form button[type="submit"]:hover {
@@ -83,29 +87,30 @@
     @extends('Layouts.app')
 
     @section('content')
-        <h2 id="cM">افزودن تگ</h2>
+
         <div class="menu-container">
             <div class="menu-form">
+                <h2 id="cM">افزودن تگ</h2>
                 <form autocomplete="off" method="POST" action="{{ route('Tag.addTag') }}">
                     @csrf
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
                         <label for="name">اسم تگ</label>
                         <input type="text" name="name" required autofocus>
                     </div>
                     <div>
                         <label for="tags">تگ‌ها</label>
-                        <inpute  name="tags[]" class="form-control"  multiple="multiple">
+                        <inpute name="tags[]" class="form-control" multiple="multiple">
                             @foreach ($tags as $tag)
-                                <label  value="{{ $tag->id}}">{{ $tag->name.'#'}}</label>
+                                <label value="{{ $tag->id }}">{{ $tag->name . '#' }}</label>
                             @endforeach
                         </inpute>
                     </div>

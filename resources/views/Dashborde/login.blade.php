@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +12,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 89vh;
-          text-align: right;
+            height: 50vh;
+            position: relative;
+            z-index: 1;
+            text-align: right;
         }
 
         .login-form {
-    
-            
-            padding: 20px;
+
+
+            padding: 62px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 32rem;
+            width: 48rem;
             display: flex;
             flex-direction: column;
+            bottom: 3rem;
+            opacity: revert;
+            position: absolute;
         }
 
         .login-form h2 {
@@ -47,11 +53,11 @@
             border-radius: 5px;
             font-size: 13px;
             text-align: right;
-            
+
         }
 
         .login-form button[type="submit"] {
-            background-color:  rgb(11, 11, 100);
+            background-color: rgb(11, 11, 100);
             color: white;
             padding: 3px 10px;
             border: none;
@@ -66,30 +72,31 @@
         }
     </style>
 </head>
+
 <body>
     @extends('Layouts.app')
 
     @section('title', 'Login')
-    
+
     @section('content')
-    @php
-    $hidelogout=true;
-        
-    @endphp
+        @php
+            $hidelogout = true;
+
+        @endphp
         <div class="login-container">
             <div class="login-form">
                 <h2>ورود</h2>
                 <form method="POST" action="{{ route('Dashborde.login') }}">
                     @csrf
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
                         <label for="email">ایمیل</label>
                         <input style="text-align: left;" type="text" id="email" name="email">
@@ -105,6 +112,7 @@
             </div>
         </div>
     @endsection
-    
+
 </body>
+
 </html>

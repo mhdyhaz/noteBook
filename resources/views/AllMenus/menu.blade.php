@@ -22,21 +22,24 @@
             left: 50%;
             transform: translate(-50%, -50%);
             display: flex;
-            gap: 20px;
+            gap:35px;
+            
         }
 
         .icon-box {
             border: 2px solid #3000dd;
             border-radius: 8px;
             padding: 20px;
-            max-width: 120px;
+            width: 9rem;
             background: #f2f0fd7a;
             transition: all 0.3s;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.43);
+            height: 11rem;
         }
 
         .icon-box:hover {
             border-width: 4px;
-            box-shadow: 0 8px 16px rgba(4, 0, 0, 0.79);
+            box-shadow: 0 8px 16px rgba(4, 0, 0, 0.877);
         }
 
         .icon-box i {
@@ -46,9 +49,10 @@
 
         .sidebar {
             position: fixed;
-            bottom: 9rem;
+            bottom: 12rem;
             width: 92rem;
             overflow-y: auto;
+            display: block;
         }
 
         #jstree {

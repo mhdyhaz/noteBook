@@ -24,6 +24,7 @@
         font-size: 20px;
         text-align: center;
         font-family: initial;
+        
     }
 </style>
 </head>
