@@ -23,12 +23,14 @@ class ShareMenuMail extends Mailable
 
     public function build()
     {
-        return $this->view('Share.shareMenu')
-                    ->with([
-                        'menuName' => $this->menu->name,
-                        'parentName' => $this->menu->parent ? $this->menu->parent->name : 'بدون والد',
-                        'tags' => $this->menu->tags->pluck('name')->toArray(),
-                        'sharedBy' => $this->user->name,
-                    ]);
+        $menuContent = $this->menu->name . "\n";
+
+        foreach ($this->menu->children as $child) {
+            $menuContent .= "- " . $child->name . "\n";
+        }
+
+        return $this->subject('اشتراک‌گذاری منو')
+                    ->view('Share.shareMenu')
+                    ->with(['menuContent' => $menuContent]);
     }
 }

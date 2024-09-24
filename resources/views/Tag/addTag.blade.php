@@ -24,6 +24,7 @@
             font-family: initial;
             opacity: inherit;
             text-align: center;
+            margin-bottom: 3rem;
         }
 
         .menu-form {
@@ -94,7 +95,7 @@
                 <form autocomplete="off" method="POST" action="{{ route('Tag.addTag') }}">
                     @csrf
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                    <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -108,7 +109,7 @@
                     </div>
                     <div>
                         <label for="tags">تگ‌ها</label>
-                        <inpute name="tags[]" class="form-control" multiple="multiple">
+                        <inpute style="padding: 13px;" name="tags[]" class="form-control" multiple="multiple">
                             @foreach ($tags as $tag)
                                 <label value="{{ $tag->id }}">{{ $tag->name . '#' }}</label>
                             @endforeach

@@ -27,6 +27,7 @@
             font-family: initial;
             opacity: inherit;
             text-align: center;
+            margin-bottom: 3rem;
         }
 
         .menu-form {
@@ -61,6 +62,9 @@
             text-align: right;
             font-size: 13px;
             background: #fff;
+            /* راست چین شدن گزینه ها */
+            direction: rtl;
+         
         }
 
         .menu-form button[type="submit"] {
@@ -96,7 +100,7 @@
                     @csrf
                     @method('PUT')
                     @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -111,7 +115,7 @@
 
                     <div>
                         <label for="parent-menu">منو اصلی</label>
-                        <select id="parent-menu" name="parent_id">
+                        <select id="parent-menu" name="parent_id"  class="float-end" >
                             <option value="">انتخاب کنید</option>
                             @foreach ($parentMenus as $parentMenu)
                                 <option value="{{ $parentMenu->id }}" {{ $menu->parent_id == $parentMenu->id ? 'selected' : '' }}>
@@ -120,6 +124,7 @@
                             @endforeach
                         </select>
                     </div>
+                    
 
                     <div class="form-group">
                         <label for="tags">تگ‌ها</label>

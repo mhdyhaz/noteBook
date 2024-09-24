@@ -28,6 +28,7 @@
             font-family: initial;
             opacity: inherit;
             text-align: center;
+            margin-bottom: 3rem;
         }
 
 
@@ -60,7 +61,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 13px;
-            text-align: right;
+            direction: rtl;
         }
 
         .menu-form button[type="submit"] {
@@ -96,7 +97,7 @@
                 <form autocomplete="off" method="POST" action="{{ route('AllMenus.store') }}">
                     @csrf
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                        <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>

@@ -38,7 +38,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::delete('/Share/sharedOther', [UserController::class, 'removeSharedMenuAsSender'])->name('shared-menu.remove-as-sender');
-
+ 
+    
     Route::post('/Share/shareMenu', [UserController::class, 'shareMenu'])->name('Share.shareMenu');
     Route::post('/check-email', [UserController::class, 'checkEmail']);
     Route::get('/Share/sharedOther', [UserController::class, 'sharedOther'])->name('Share.sharedOther');

@@ -34,31 +34,29 @@
         }
 
         #backButton[type="submit"] {
-            color: white;
+          background: none;
             border: none;
             opacity: inherit;
             position: absolute;
             top: 96px;
-            font-size: 15px;
+            font-size: 27px;
             border-radius: 5px;
-            background-color: rgb(11, 11, 100);
             padding: 4px 11px;
             left: 10px;
-            font-family: initial;
+
         }
 
         #logout[type="submit"] {
-            color: white;
+            background: none;
             border: none;
             opacity: inherit;
             position: absolute;
-            top: 36px;
-            font-size: 15px;
+            top: 30px;
+            font-size:27px;
             border-radius: 5px;
-            background-color: rgb(11, 11, 100);
             padding: 3px 15px;
             left: 10px;
-            font-family: initial;
+            
         }
     </style>
 </head>

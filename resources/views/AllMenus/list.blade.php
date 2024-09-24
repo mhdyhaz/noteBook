@@ -26,7 +26,8 @@
 
     #lM {
         font-size: 30px;
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
+        
     }
 
     .table-container {
@@ -37,22 +38,46 @@
     }
 
     #edit {
-        background-color: rgb(38, 38, 148);
-  padding: 4px 14px;
-  margin: 2px 31px;
-  border: none;
-    }
+            background: none;
+            color: rgb(11, 13, 112);
+            border: none;
+            font-size: 18px;
+        }
 
     #delete {
-        padding: 3px 14px;
-    }
+            background: none;
+            color: rgb(182, 10, 10);
+            border: none;
+            font-size: 18px;
+        }
+    .modal-footer button[type="submit"] {
+            position: relative;
+
+            padding: 2px 9px;
+            right: 365px;
+        }
+
+        .modal-footer button[type="button"] {
+            position: relative;
+            padding: 2px 15px;
+            right: 355px;
+
+
+        }
 </style>
 
 <body>
-
-    @extends('Layouts.app')
+   
+   
+        @extends('Layouts.app')
 
     @section('content')
+    @php
+    function convertToPersianNumbers($number) {
+    $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    return str_replace(range(0, 9), $persianNumbers, $number);
+}
+@endphp 
         <div class="container mt-5">
 
             <div class="list-container">
@@ -93,7 +118,7 @@
                                     </td>
                                     <td>{{ optional($menu->parent)->name }}</td>
                                     <td>{{ $menu->name }}</td>
-                                    <td>{{ $menu->id }}</td>
+                                    <td>{{ convertToPersianNumbers($menu->id) }}</td>
                                 </tr>
 
                                 <!-- مودال حذف -->
@@ -111,15 +136,14 @@
                                                 آیا می‌خواهید منو "{{ $menu->name }}" حذف شود؟
                                             </div>
                                             <div class="modal-footer">
-                                                <button style="position: relative; padding: 4px 15px;right: 355px;"
+                                                <button 
                                                     type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">لغو</button>
                                                 <form action="{{ route('AllMenus.destroy', $menu->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button style="padding: 4px 9px;" type="submit"
-                                                        class="btn btn-danger"> حذف
+                                                    <button class="btn btn-danger"> حذف
                                                     </button>
                                                 </form>
                                             </div>

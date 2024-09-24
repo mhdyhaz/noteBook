@@ -11,33 +11,36 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function shareMenu(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'menu_id' => 'required|exists:menus,id',
-        ]);
+   public function shareMenu(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'menu_id' => 'required|exists:menus,id',
+    ]);
 
-        $userToShare = User::where('email', $request->email)->first();
+    $userToShare = User::where('email', $request->email)->first();
 
-        if (!$userToShare) {
-            return response()->json(['message' => 'کاربری با این ایمیل یافت نشد'], 404);
-        }
-
-        $menu = Menu::with('tags', 'parent')->findOrFail($request->menu_id);
-        $user = Auth::user();
-
-        Mail::to($request->email)->send(new ShareMenuMail($menu, $user));
-
-        MenuShare::updateOrCreate([
-            'menu_id' => $menu->id,
-            'user_id' => $userToShare->id,
-        ], [
-            'shared_by' => Auth::id(), 
-        ]);
-        
-        return response()->json(['message' => 'منو با موفقیت به اشتراک گذاشته شد']);
+    if (!$userToShare) {
+        return response()->json(['message' => 'کاربری با این ایمیل یافت نشد'], 404);
     }
+
+    // بارگذاری منو و فرزندان آن
+    $menu = Menu::with(['tags', 'parent', 'children'])->findOrFail($request->menu_id);
+    $user = Auth::user();
+
+    // ارسال ایمیل به کاربر
+    Mail::to($request->email)->send(new ShareMenuMail($menu, $user));
+
+    // ذخیره اطلاعات اشتراک‌گذاری
+    MenuShare::updateOrCreate([
+        'menu_id' => $menu->id,
+        'user_id' => $userToShare->id,
+    ], [
+        'shared_by' => Auth::id(), 
+    ]);
+
+    return response()->json(['message' => 'منو با موفقیت به اشتراک گذاشته شد']);
+}
 
     public function sharedOther()
     {

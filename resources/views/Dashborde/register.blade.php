@@ -102,7 +102,7 @@
                 <form autocomplete="off" method="POST" action="{{ route('Dashborde.register') }}">
                     @csrf
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                    <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
