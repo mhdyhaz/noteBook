@@ -13,21 +13,26 @@
         color: black;
         width: 80rem;
         margin: auto;
+        margin-bottom: auto;
         margin-bottom: 30rem;
         background-color: #f8f9fa;
         padding: 6px 62px;
         border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.41);
+        box-shadow: 0 4px 8px rgba(186, 178, 204, 0.41);
         height: 42rem;
         position: absolute;
         top: 9rem;
         text-align: center;
+        background: #e0dfe114;
+
+
     }
 
     #lM {
-        font-size: 30px;
-        margin-bottom: 3rem;
-        
+        font-size: 18px;
+        margin-bottom: 2rem;
+        text-align: right;
+        padding: 14px 0px;
     }
 
     .table-container {
@@ -38,46 +43,55 @@
     }
 
     #edit {
-            background: none;
-            color: rgb(11, 13, 112);
-            border: none;
-            font-size: 18px;
-        }
+        background: none;
+        color: rgb(11, 13, 112);
+        border: none;
+        font-size: 18px;
+    }
+
 
     #delete {
-            background: none;
-            color: rgb(182, 10, 10);
-            border: none;
-            font-size: 18px;
-        }
+        background: none;
+        color: rgb(182, 10, 10);
+        border: none;
+        font-size: 18px;
+    }
+
     .modal-footer button[type="submit"] {
-            position: relative;
+        position: relative;
 
-            padding: 2px 9px;
-            right: 365px;
-        }
+        padding: 2px 9px;
+        right: 365px;
+    }
 
-        .modal-footer button[type="button"] {
-            position: relative;
-            padding: 2px 15px;
-            right: 355px;
+    .modal-footer button[type="button"] {
+        position: relative;
+        padding: 2px 15px;
+        right: 355px;
 
 
-        }
+    }
+
+    #delete2 {
+        position: relative;
+        padding: 2px 9px;
+        right: 344px;
+    }
 </style>
 
 <body>
-   
-   
-        @extends('Layouts.app')
+
+
+    @extends('Layouts.app')
 
     @section('content')
-    @php
-    function convertToPersianNumbers($number) {
-    $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    return str_replace(range(0, 9), $persianNumbers, $number);
-}
-@endphp 
+        @php
+            function convertToPersianNumbers($number)
+            {
+                $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+                return str_replace(range(0, 9), $persianNumbers, $number);
+            }
+        @endphp
         <div class="container mt-5">
 
             <div class="list-container">
@@ -87,7 +101,7 @@
                     <table class="table table-striped table-hover">
 
                         <thead>
-                            <tr>
+                            <tr style="border: solid 1px #cacaca;;">
                                 <th>عملیات</th>
                                 <th>تگ</th>
                                 <th>منوی اصلی</th>
@@ -102,11 +116,11 @@
                                     <td>
                                         <a id="edit" href="{{ route('AllMenus.editMenu', $menu->id) }}"
                                             class="btn btn-primary btn-sm">
-                                            <i class="bi bi-pencil"></i> 
+                                            <i class="bi bi-pencil"></i>
                                         </a>
                                         <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal-{{ $menu->id }}">
-                                            <i class="bi bi-trash"></i> 
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </td>
                                     <td>
@@ -136,14 +150,13 @@
                                                 آیا می‌خواهید منو "{{ $menu->name }}" حذف شود؟
                                             </div>
                                             <div class="modal-footer">
-                                                <button 
-                                                    type="button" class="btn btn-secondary"
+                                                <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">لغو</button>
                                                 <form action="{{ route('AllMenus.destroy', $menu->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger"> حذف
+                                                    <button id="delete2" class="btn btn-danger"> حذف
                                                     </button>
                                                 </form>
                                             </div>

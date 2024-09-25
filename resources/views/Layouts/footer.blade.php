@@ -23,7 +23,7 @@
        color: black;
         font-size: 20px;
         text-align: center;
-        font-family: initial;
+        font-weight: bold;
         
     }
 </style>

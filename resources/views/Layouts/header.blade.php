@@ -29,8 +29,10 @@
             font-size: 38px;
             text-align: center;
             color: black;
-            font-family: initial;
+          
+            font-weight: bold;
             display: contents;
+            font-family: initial;
         }
 
         #backButton[type="submit"] {

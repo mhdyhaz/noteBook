@@ -12,21 +12,27 @@
             color: black;
             width: 80rem;
             margin: auto;
+            margin-bottom: auto;
             margin-bottom: 30rem;
             background-color: #f8f9fa;
             padding: 6px 62px;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.41);
+            box-shadow: 0 4px 8px rgba(186, 178, 204, 0.41);
             height: 42rem;
             position: absolute;
             top: 9rem;
             text-align: center;
+            background: #e0dfe114;
+
+
         }
 
         #lM {
-            font-size: 30px;
-            margin-bottom: 3rem;
-      
+            font-size: 18px;
+            margin-bottom: 2rem;
+            text-align: right;
+            padding: 14px 0px;
+
         }
 
         #delete {
@@ -38,9 +44,11 @@
 
         .modal-footer button[type="submit"] {
             position: relative;
-
             padding: 2px 9px;
-            right: 365px;
+            right: 360px;
+            background-color:#dc3545;
+            color: #ffe4e4;
+            font-family: revert;
         }
 
         .modal-footer button[type="button"] {
@@ -57,32 +65,28 @@
 @extends('Layouts.app')
 
 @section('content')
-@php
-function convertToPersianNumbers($number) {
-$persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-return str_replace(range(0, 9), $persianNumbers, $number);
-}
-@endphp 
+    @php
+        function convertToPersianNumbers($number)
+        {
+            $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            return str_replace(range(0, 9), $persianNumbers, $number);
+        }
+    @endphp
     <div class="container">
         <div class="share-container">
 
             <h2 id="lM">منوهای اشتراک‌ گذاشته شده</h2>
 
-            @if (session('success'))
-                <div class="alert alert-success" style="text-align: center;width: 24rem;position: relative;position: relative;left: 24rem;">
-                    {{ session('success') }}
-                </div>
-            @endif
 
             @if (session('error'))
-            <div style="text-align: left;width: 32rem;position: relative;left: 61px;" class="alert alert-danger">
+                <div style="text-align: left;width: 32rem;position: relative;left: 61px;" class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
 
             <table style="text-align: center;" class="table table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr style="border: black;  border-block-end-style: double;">
                         <th>عملیات</th>
                         <th>دریافت کننده</th>
                         <th>تگ</th>
@@ -110,8 +114,8 @@ return str_replace(range(0, 9), $persianNumbers, $number);
                                 </td>
                                 <td>{{ optional($menuShare->menu->parent)->name }}</td>
                                 <td>{{ $menuShare->menu->name }}</td>
-                                <td>{{ convertToPersianNumbers($menuShare->menu->id ) }}</td>
-                               
+                                <td>{{ convertToPersianNumbers($menuShare->menu->id) }}</td>
+
                             </tr>
 
                             <!-- Modal for Delete -->

@@ -73,7 +73,7 @@ public function removeSharedMenu(Request $request)
              ->where('shared_by', '!=', Auth::id())  
              ->delete();
 
-    return redirect()->route('AllMenus.menu')->with('success', 'اشتراک‌گذاری منو با موفقیت حذف شد.');
+    return redirect()->route('Share.sharedMe')->with('success', 'اشتراک‌گذاری منو با موفقیت حذف شد.');
 }
 public function removeSharedMenuAsSender(Request $request)
 {
