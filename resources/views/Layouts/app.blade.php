@@ -30,16 +30,16 @@
 </head>
 <body>
   
-    @if(Request::path() !== 'Dashborde')
+ 
+    @if(!in_array(Request::path(), ['Dashborde', 'Dashborde/login', 'Dashborde/register']))
         @include('Layouts.header') 
     @endif
-    
     
     <div class="content">
         @yield('content') 
     </div>
 
-    @if(Request::path() !== 'Dashborde')
+    @if(!in_array(Request::path(), ['Dashborde', 'Dashborde/login', 'Dashborde/register']))
         @include('Layouts.footer') 
     @endif
   
@@ -47,3 +47,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+

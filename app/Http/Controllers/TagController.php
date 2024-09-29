@@ -26,7 +26,7 @@ class TagController extends Controller
             'user_id' => auth()->id(), // ذخیره user_id برای هر تگ
         ]);
     
-        return redirect()->route('AllMenus.menu');
+        return redirect()->route('Tag.addTag');
     }
     
 }

@@ -7,132 +7,123 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Register</title>
     <style>
-        .register-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            position: relative;
-            z-index: 1;
-            text-align: right;
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .register-background {
-            position: absolute;
+        .background-image {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('path-to-your-background-image.jpg') no-repeat center center fixed;
-            background-size: cover;
-            filter: blur(8px);
-            -webkit-filter: blur(8px);
+            background: url('{{ asset('images/Cart1027302www.tiktarh.com_.jpg') }}') no-repeat center center fixed;
+            background-size:53rem;
+            filter: blur(3px);
             z-index: -1;
         }
 
-        .register-form {
-
-            padding: 62px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(83, 74, 74, 0.56);
-            width: 48rem;
+        .login-container {
             display: flex;
-            flex-direction: column;
-            bottom: 3rem;
-            opacity: revert;
-            position: absolute;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
-        .register-form h2 {
+        .login-form {
+            padding: 40px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.8); /* برای وضوح بیشتر */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            z-index: 2;
+        }
+
+        .login-form h2 {
             text-align: center;
-            font-family: initial;
             margin-bottom: 20px;
+            
         }
 
-        .register-form label {
-            margin-bottom: 5px;
-            font-family: initial;
-            font-weight: bold;
+        .login-form label {
+            display: block;
+  margin-bottom: 10px;
+  text-align: right;
         }
 
-        .register-form input[type="text"],
-        .register-form input[type="email"],
-        .register-form input[type="password"] {
+        .login-form input[type="text"],
+        .login-form input[type="password"],
+        .login-form input[type="email"] {
             width: 100%;
-            padding: 4px;
-            margin-bottom: 15px;
+            padding: 8px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 13px;
+            font-size: 16px;
             text-align: right;
         }
 
-        .register-form button[type="submit"] {
-            background-color: rgb(11, 11, 100);
+        .login-form button {
+            width: 105%;
+            padding: 5px;
+            background-color: #1b1340;
             color: white;
-            padding: 3px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-family: initial;
-            font-size: 13px;
         }
 
-        .register-form button[type="submit"]:hover {
-            background-color: #e5ebf0;
+        .login-form button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 
 <body>
-    @extends('Layouts.app')
 
-    @section('title', 'Register')
+    <div class="background-image"></div>
 
-    @section('content')
-
-        @php
-            $hidelogout = true;
-        @endphp
-
-        <div class="register-container">
-            <di class="register-background"></di>
-            <div class="register-form">
-                <h2>ثبت نام</h2>
-                <form autocomplete="off" method="POST" action="{{ route('Dashborde.register') }}">
-                    @csrf
-                    @if ($errors->any())
-                    <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div>
-                        <label for="name">اسم</label>
-                        <input type="text" id="name" name="name" required autofocus>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>ثبت‌نام</h2>
+            <form method="POST" action="{{ route('Dashborde.register') }}">
+                @csrf
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                    <div>
-                        <label for="email">ایمیل</label>
-                        <input style="text-align: left;" type="email" id="email" name="email" required>
-                    </div>
-                    <div>
-                        <label for="password">رمزعبور</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div>
-                        <label for="password_confirmation">تکرار رمزعبور</label>
-                        <input type="password" id="password_confirmation" name="password_confirmation" required>
-                    </div>
-                    <div>
-                        <button type="submit">ثبت نام</button>
-                    </div>
-                </form>
-            </div>
+                @endif
+                <div>
+                    <label for="name">نام</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">ایمیل</label>
+                    <input  style="text-align: left;" type="email" id="email" name="email" required  autocomplete="off"> 
+                </div>
+                <div>
+                    <label for="password">رمز عبور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="password_confirmation">تأیید رمز عبور</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation" required>
+                </div>
+                <div>
+                    <button type="submit">ثبت‌نام</button>
+                </div>
+            </form>
         </div>
-    @endsection
+    </div>
 
 </body>
 

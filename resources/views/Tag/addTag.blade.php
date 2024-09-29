@@ -109,7 +109,7 @@
                     </div>
                     <div>
                         <label for="tags">تگ‌ها</label>
-                        <inpute style="padding: 13px;" name="tags[]" class="form-control" multiple="multiple">
+                        <inpute style="padding: 13px; border: none;" name="tags[]" class="form-control" multiple="multiple">
                             @foreach ($tags as $tag)
                                 <label value="{{ $tag->id }}">{{ $tag->name . '#' }}</label>
                             @endforeach
