@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
     <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .list-container {
             font-family: initial;
             color: black;
@@ -24,34 +29,30 @@
             top: 9rem;
             text-align: center;
             background: #e0dfe114;
-
-
         }
 
-        #lM {
-            font-size: 18px;
-            margin-bottom: 2rem;
-            text-align: right;
-            padding: 14px 0px;
+        table {
+            width: 100%;
+            table-layout: fixed;
         }
 
-        #delete {
-            background: none;
-            color: rgb(182, 10, 10);
-            border: none;
-            font-size: 17px;
+        #cancel {
+            position: relative;
+            padding: 2px 15px;
+            right: 355px;
         }
 
-        .modal-footer button[type="submit"] {
+        #delete2 {
             position: relative;
             padding: 2px 9px;
             right: 344px;
         }
 
-        .modal-footer button[type="button"] {
-            position: relative;
-            padding: 2px 15px;
-            right: 355px;
+        table th,
+        table td {
+            white-space: nowrap;
+            text-align: center;
+            padding: 10px;
         }
 
         #eye {
@@ -60,48 +61,42 @@
             border: none;
         }
 
-        #jstree {
-            margin: 35px 7px 33px 27px;
+        #delete {
+            background: none;
+            color: rgb(182, 10, 10);
+            border: none;
+            font-size: 18px;
+        }
+
+        .modal-content {
             text-align: right;
+        }
+
+        .modal-dialog {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .modal-content.tree-modal {
+            margin-top: 100px;
+        }
+        .li{
             direction: rtl;
-        }
-
-        .collapse {
-            direction: rtl;
-            /* راست‌چین کردن محتویات درخت */
-            text-align: right;
-            display: table-row;
-            /* نمایش به عنوان سطر جدول */
-        }
-
-        td.collapse-container {
-            padding: 0;
-
-        }
-
-        li {
-            text-align: right;
-            /* راست‌چین کردن هر عنصر لیست */
         }
     </style>
 </head>
 
 <body>
     @extends('Layouts.app')
-    @php
-        function convertToPersianNumbers($number)
-        {
-            $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-            return str_replace(range(0, 9), $persianNumbers, $number);
-        }
-    @endphp
     @section('content')
         <div class="container">
             <div class="list-container">
                 <h1 id="lM">منوهای دریافتی</h1>
-                <table style="text-align: center;" class="table table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
-                        <tr style="border-block-end-style: double;border: double;">
+                        <tr style="border-block-end-style: double; border: double;">
                             <th>عملیات</th>
                             <th>ارسال‌کننده</th>
                             <th>تگ</th>
@@ -110,14 +105,17 @@
                             <th>شناسه</th>
                         </tr>
                     </thead>
-                    <tbody style="border:" >
+                    <tbody>
                         @forelse($menus as $menu)
                             <tr>
                                 <td>
-                                    <button id="eye" class="btn btn-info btn-sm toggle-children"
-                                        data-target="#collapse-{{ $menu->id }}">
+                                    <!-- دکمه نمایش منو -->
+                                    <button id="eye" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#menuModal-{{ $menu->id }}">
                                         <i class="bi bi-eye"></i>
                                     </button>
+
+                                    <!-- دکمه حذف -->
                                     <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $menu->id }}">
                                         <i class="bi bi-trash"></i>
@@ -133,101 +131,105 @@
                                 </td>
                                 <td>{{ optional($menu->parent)->name }}</td>
                                 <td>{{ $menu->name }}</td>
-                                <td>{{ convertToPersianNumbers($menu->id) }}</td>
+                                <td>{{ $menu->id }}</td>
                             </tr>
-                            <tr class="collapse" id="collapse-{{ $menu->id }}">
-                         
-                                <td class="collapse-container" colspan="5">
 
-                                    <div id="jstree-{{ $menu->id }}">
+                            <!-- Modal حذف -->
+                            <div class="modal fade" id="deleteModal-{{ $menu->id }}" tabindex="-1"
+                                aria-labelledby="deleteModalLabel-{{ $menu->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="position: absolute;bottom: 47rem;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel-{{ $menu->id }}"
+                                                style="position: absolute; left: 162px;">حذف منو دریافت شده</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" style="text-align: center; ">
+                                            آیا می‌خواهید منو "{{ $menu->name }}" حذف شود؟
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="cancel" type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">لغو</button>
+                                            <form action="{{ route('Share.removeShared') }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                                <button id="delete2" type="submit" class="btn btn-danger">حذف</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal نمایش درختی -->
+                            
+                    <!-- Modal برای هر منو -->
+                    <div class="modal fade" id="menuModal-{{ $menu->id }}" tabindex="-1"
+                        aria-labelledby="menuModalLabel-{{ $menu->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="position: absolute; bottom: 30rem;">
+                                <div class="modal-header">
+                                    <h5 style="position: absolute;left: 209px;" class="modal-title" id="menuModalLabel-{{ $menu->id }}">منوی درختی</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div style=" direction: rtl;" id="jstree-{{ $menu->id }}" class="jstree-wrapper">
                                         <ul>
                                             <li>{{ $menu->name }}
                                                 @if ($menu->children->isNotEmpty())
-                                                    <ul>
-                                                        @foreach ($menu->children as $child)
-                                                            <li>{{ $child->name }}
-                                                                @if ($child->children->isNotEmpty())
-                                                                    <ul>
-                                                                        @foreach ($child->children as $grandchild)
-                                                                            <li>{{ $grandchild->name }}
-                                                                                @if ($grandchild->children->isNotEmpty())
-                                                                                    <ul>
-                                                                                        @foreach ($grandchild->children as $greatGrandchild)
-                                                                                            <li>{{ $greatGrandchild->name }}
-                                                                                            </li>
-                                                                                        @endforeach
-                                                                                    </ul>
-                                                                                @endif
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                @endif
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                                <ul>
+                                                    @foreach ($menu->children as $child)
+                                                    <li>{{ $child->name }}
+                                                        @if ($child->children->isNotEmpty())
+                                                        <ul>
+                                                            @foreach ($child->children as $grandchild)
+                                                            <li>{{ $grandchild->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        @endif
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
                                                 @endif
                                             </li>
                                         </ul>
                                     </div>
-
-                                </td>
-                            </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">منویی دریافت نشده</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            </td>
-        
-
-
-            @foreach ($menus as $menu)
-                <div class="modal fade" id="deleteModal-{{ $menu->id }}" tabindex="-1"
-                    aria-labelledby="deleteModalLabel-{{ $menu->id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 style="position: absolute;left: 162px;" class="modal-title"
-                                    id="deleteModalLabel-{{ $menu->id }}">حذف منو دریافت شده</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div style="text-align: center;" class="modal-body">
-                                آیا می‌خواهید منو "{{ $menu->name }}" حذف شود؟
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">لغو</button>
-                                <form action="{{ route('Share.removeShared') }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <input type="hidden" name="menu_id" value="{{ $menu->id }}">
-                                    <button type="submit" class="btn btn-danger">حذف</button>
-                                </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button style="padding: 2px 12px;text-align: center;position: relative;right: 26rem;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center">منویی دریافت نشده</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <script>
-                $(document).ready(function() {
-                    $('.toggle-children').click(function() {
-                        var target = $(this).data('target');
-                        $(target).toggle();
-                        $('#jstree-' + target.split('-')[1]).jstree({
-                            "core": {
-                                "themes": {
-                                    "variant": "large"
-                                }
-                            }
-                        });
-                    });
+    <script>
+        $(document).ready(function () {
+            @foreach ($menus as $menu)
+            $('#menuModal-{{ $menu->id }}').on('shown.bs.modal', function () {
+                $('#jstree-{{ $menu->id }}').jstree({
+                    "core": {
+                        "themes": {
+                            "variant": "large"
+                        }
+                    }
                 });
-            </script>
-        @endsection
-    </body>
+            });
+            @endforeach
+        });
+    </script>
 
-    </html>
+    @endsection
+</body>
+
+</html>

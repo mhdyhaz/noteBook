@@ -38,6 +38,7 @@
         .login-form {
             padding: 40px;
             border-radius: 8px;
+            font-weight: bold;
             background-color: rgba(255, 255, 255, 0.8);
             /* برای وضوح بیشتر */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -48,6 +49,7 @@
         }
 
         .login-form h2 {
+            font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -63,16 +65,18 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 20px;
+            font-weight: bold;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 15px;
             text-align: right;
         }
 
         .login-form button {
             width: 105%;
             padding: 5px;
-            background-color: #1b1340;
+            background-color: #581a6f;
+            font-weight: bold;
             color: white;
             border: none;
             border-radius: 5px;
@@ -80,7 +84,7 @@
         }
 
         .login-form button:hover {
-            background-color: #555;
+            background-color: #3e0b50;
         }
     </style>
 </head>

@@ -28,7 +28,7 @@
         }
 
         .icon-box {
-            border: 2px solid #3000dd;
+            border: 2px solid #6851b9;
             border-radius: 8px;
             padding: 25px 35px;
             width: 8rem;
@@ -140,7 +140,7 @@
             </div>
             <div class="icon-box">
                 <a id="a" href="{{ route('Share.sharedMe') }}">
-                    <i class="bi bi-folder-symlink"></i><br>اشتراک گذاشته شده با من
+                    <i class="bi bi-folder-symlink"></i><br>دریافت شده
                 </a>
             </div>
             <div class="icon-box">
@@ -161,11 +161,14 @@
         </div>
 
         <div class="sidebar">
-            <h4 id="menu">:منوهای من</h4>
+            <h4 id="menu">:منوهای ویژه</h4>
             <div id="jstree">
                 <ul>
-                    @foreach ($menus as $menu)
-                        @if ($menu->parent_id == null)
+                
+                    @foreach ($menus as $menu) 
+                    
+                        @if ($menu->parent_id == null )
+                
                             <li>
                                 {{ $menu->name }}
                                 @if ($menu->children->isNotEmpty())
@@ -194,13 +197,14 @@
                                     </ul>
                                 @endif
                             </li>
+                            
                         @endif
                     @endforeach
                 </ul>
             </div>
         </div>
 
-        <!-- مودال اشتراک گذاری منو -->
+    
         <div class="modal fade" id="shareMenuModal" tabindex="-1" aria-labelledby="shareMenuModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -217,7 +221,7 @@
                                 <input type="email" class="form-control" id="email" required>
                             </div>
                             <input type="hidden" id="menuId">
-                            <button style="position: relative;left: 199px" type="submit"
+                            <button style="position: relative;left: 199px; background-color:#581a6f; border:none;" type="submit"
                                 class="btn btn-primary">ارسال</button>
                         </form>
                     </div>

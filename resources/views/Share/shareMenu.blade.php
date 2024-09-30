@@ -1,42 +1,7 @@
 @extends('Layouts.app')
 
 @section('content')
-<style>
-    .share-container {
-        background-color: #f8f9fa;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: auto;
-        width: 80%;
-        max-width: 600px;
-        text-align: center;
-    }
 
-    .share-header {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .share-form {
-        margin-bottom: 20px;
-    }
-
-    .share-button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .share-button:hover {
-        background-color: #0056b3;
-    }
-</style>
 
 <div class="container">
     <div class="share-container">

@@ -43,7 +43,7 @@
         .circle {
             width: 130px;
             height: 59px;
-            background-color: #1b1340;
+            background-color: #581a6f;
             border-radius: 10PX;
             display: flex;
             justify-content: center;
@@ -72,8 +72,9 @@
             padding: 10px;
             display: none;
             overflow: hidden;
-            text-align: right;
+            text-align: center;
             background: #fefefe;
+         
         }
 
         .text-box p {
@@ -94,9 +95,10 @@
         }
 
         .scroll-arrow {
+            font-weight: bold;
             width: 40px;
             height: 40px;
-            background-color: #1b1340;
+            background-color:  #581a6f;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -111,7 +113,7 @@
         }
 
         .scroll-arrow:hover {
-            background-color: #090952;
+            background-color:  #3e0b50;
         }
 
         .button-container {
@@ -125,7 +127,8 @@
         }
 
         .button-container button {
-            background-color: #1b1340;
+            font-weight: bold;
+            background-color:#581a6f;
             width: 140px;
             height: 45px;
             color: white;
@@ -141,7 +144,7 @@
         }
 
         .button-container button:hover {
-            background-color: #090952;
+            background-color: #3e0b50;
         }
 
         .close-btn {
@@ -175,7 +178,7 @@
                 سایت ما به شما در دسته‌بندی اطلاعاتتان، نمایش و به اشتراک‌گذاری محتوایی که می‌خواهید کمک می‌کند.
                 امکاناتی همچون نمایش لیست‌ها به‌صورت درختی، اشتراک‌گذاری سریع و آسان، افزودن تگ و نمایش لیست‌های
                 دریافتی همراه با جزئیات کامل در اختیار شما خواهد بود.
-                با ما کار را برای خود راحت کنید و با خیالی آسوده اطلاعات خود را دسته‌بندی و به اشتراک بگذارید.
+                با ما کار را برای خود راحت کنید و با خیالی آسوده اطلاعات خود را دسته‌بندی و به اشتراک بگذارید
             </p>
         </div>
 

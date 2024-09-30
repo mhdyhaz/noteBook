@@ -53,7 +53,7 @@ class MenuController extends Controller
             }
         }
 
-        // افزودن تگ‌ها به منو
+  
         $menu->tags()->sync($tagIds);
 
         return redirect()->route('AllMenus.menu');
@@ -96,7 +96,6 @@ class MenuController extends Controller
         $menu->parent_id = $request->input('parent_id');
         $menu->save();
 
-        // ذخیره‌سازی تگ‌های جدید
         $tagIds = [];
         $tags = $request->input('tags', []);
         foreach ($tags as $tagName) {
@@ -119,10 +118,8 @@ class MenuController extends Controller
     {
         $menu = Menu::findOrFail($id);
         
-        // حذف اشتراک‌گذاری‌های مربوط به منو
         $menu->shares()->delete(); 
 
-        // حذف منو
         $menu->delete();
 
         return redirect()->route('AllMenus.menu')->with('success', 'Menu has been successfully deleted.');

@@ -23,7 +23,7 @@ class TagController extends Controller
     
         Tag::create([
             'name' => $request->name,
-            'user_id' => auth()->id(), // ذخیره user_id برای هر تگ
+            'user_id' => auth()->id(),
         ]);
     
         return redirect()->route('Tag.addTag');

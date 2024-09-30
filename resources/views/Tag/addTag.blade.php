@@ -66,20 +66,20 @@
         }
 
         .menu-form button[type="submit"] {
-            background-color: rgb(11, 11, 100);
+            background-color: #581a6f;
             color: white;
-            padding: 2px 11px;
+            padding: 2px 311px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 16px;
+            font-size: 18px;
             position: absolute;
-            margin: 16px -45px;
+            margin: 19px -645px;
         }
 
         .menu-form button[type="submit"]:hover {
-            background-color: #e5ebf0;
+            background-color:  #3e0b50;
         }
     </style>
 </head>

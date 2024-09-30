@@ -56,32 +56,31 @@
         #parent-menu {
             background: white;
             width: 100%;
-            padding: 4px;
+            padding: 6px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 13px;
+             /* راست‌چین کردن محتویات درخت */
             direction: rtl;
         }
 
         .menu-form button[type="submit"] {
-            background-color: rgb(11, 11, 100);
+            background-color: #581a6f;
             color: white;
-            padding: 2px 11px;
+            padding: 2px 311px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 16px;
+            font-size: 18px;
             position: absolute;
-            margin: 16px -45px;
+            margin: 19px -645px;
         }
 
         .menu-form button[type="submit"]:hover {
-            background-color: #e5ebf0;
+            background-color:  #3e0b50;
         }
-
-      
     </style>
 </head>
 
@@ -97,7 +96,8 @@
                 <form autocomplete="off" method="POST" action="{{ route('AllMenus.store') }}">
                     @csrf
                     @if ($errors->any())
-                        <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
+                        <div style="text-align: left;width: 31rem;position: relative;left: 61px;"
+                            class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -112,7 +112,7 @@
 
                     <div>
                         <label for="parent-menu">منو اصلی</label>
-                        <select  id="parent-menu" name="parent_menu">
+                        <select  style="padding: 3px" id="parent-menu" name="parent_menu">
                             <option value="">انتخاب کنید</option>
                             @foreach ($menus as $menu)
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
@@ -122,7 +122,7 @@
 
                     <div class="form-group">
                         <label for="tags">تگ‌ها</label>
-                        <select  name="tags[]" class="form-control select2" multiple="multiple">
+                        <select name="tags[]" class="form-control select2" multiple="multiple">
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach

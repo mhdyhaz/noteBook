@@ -17,7 +17,7 @@
         .header {
             padding: 48px 0;
             text-align: center;
-            background: linear-gradient(0deg, rgb(215, 221, 240) 0%, rgb(125, 119, 168) 100%);
+            background: linear-gradient(0deg, rgb(190, 182, 219) 0%, rgb(82, 46, 134) 100%);
             color: white;
             font-size: 16px;
             width: 100%;

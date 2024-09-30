@@ -45,7 +45,7 @@
    
         .menu-form input[type="text"] {
             width: 100%;
-            padding: 4px;
+            padding: 8px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -68,20 +68,20 @@
         }
 
         .menu-form button[type="submit"] {
-            background-color: rgb(11, 11, 100);
+            background-color: #581a6f;
             color: white;
-            padding: 2px 11px;
+            padding:3px 289px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: initial;
-            font-size: 16px;
+            font-size: 18px;
             position: absolute;
-            margin: 14px -82px;
+            margin: 19px -645px;
         }
         
         .menu-form button[type="submit"]:hover {
-            background-color: #e5ebf0;
+            background-color: #3e0b50;
         }
        
         
