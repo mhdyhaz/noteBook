@@ -24,7 +24,6 @@
         #LL {
             font-size: 30px;
             color: rgb(20, 20, 80);
-            font-family: initial;
             opacity: inherit;
             text-align: center;
             margin-bottom: 3rem;
@@ -74,7 +73,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-family: initial;
+           
             font-size: 18px;
             position: absolute;
             margin: 19px -645px;

@@ -25,7 +25,6 @@
         #cM {
             font-size: 30px;
             color: rgb(20, 20, 80);
-            font-family: initial;
             opacity: inherit;
             text-align: center;
             margin-bottom: 3rem;
@@ -47,7 +46,7 @@
 
         .menu-form label {
             margin-bottom: 5px;
-            font-family: initial;
+           
             font-weight: bold;
         }
 
@@ -68,11 +67,10 @@
         .menu-form button[type="submit"] {
             background-color: #581a6f;
             color: white;
-            padding: 2px 311px;
+            padding: 2px 308px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-family: initial;
             font-size: 18px;
             position: absolute;
             margin: 19px -645px;

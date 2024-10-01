@@ -3,21 +3,13 @@
 
 <head>
     <title>Page Title</title>
-    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+  
 
     <style>
         .header {
             padding: 48px 0;
             text-align: center;
-            background: linear-gradient(0deg, rgb(190, 182, 219) 0%, rgb(82, 46, 134) 100%);
+            background: linear-gradient(0deg, rgb(225, 165, 230) 0%, rgb(90, 31, 123) 100%);
             color: white;
             font-size: 16px;
             width: 100%;
@@ -28,15 +20,17 @@
         #b-id {
             font-size: 38px;
             text-align: center;
-            color: black;
-          
+            color: white;
+            font-family: 'Vazirmatn';
             font-weight: bold;
             display: contents;
-            font-family: initial;
+         
         }
 
         #backButton[type="submit"] {
           background: none;
+          color: #581a6f;
+          font-weight: bold;
             border: none;
             opacity: inherit;
             position: absolute;
@@ -50,6 +44,8 @@
 
         #logout[type="submit"] {
             background: none;
+            color:white;
+            font-weight: bold;
             border: none;
             opacity: inherit;
             position: absolute;

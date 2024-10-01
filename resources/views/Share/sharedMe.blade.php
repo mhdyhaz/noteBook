@@ -14,7 +14,7 @@
         }
 
         .list-container {
-            font-family: initial;
+           
             color: black;
             width: 80rem;
             margin: auto;
@@ -82,15 +82,30 @@
         .modal-content.tree-modal {
             margin-top: 100px;
         }
-        .li{
+
+        .li {
             direction: rtl;
         }
+        #lM{
+            font-size: 18px;
+            margin-bottom: 2rem;
+            text-align: right;
+            padding: 14px 0px;
+        }
+
     </style>
 </head>
 
 <body>
     @extends('Layouts.app')
     @section('content')
+        @php
+            function convertToPersianNumbers($number)
+            {
+                $persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+                return str_replace(range(0, 9), $persianNumbers, $number);
+            }
+        @endphp
         <div class="container">
             <div class="list-container">
                 <h1 id="lM">منوهای دریافتی</h1>
@@ -109,13 +124,13 @@
                         @forelse($menus as $menu)
                             <tr>
                                 <td>
-                                    <!-- دکمه نمایش منو -->
+
                                     <button id="eye" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#menuModal-{{ $menu->id }}">
                                         <i class="bi bi-eye"></i>
                                     </button>
 
-                                    <!-- دکمه حذف -->
+
                                     <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $menu->id }}">
                                         <i class="bi bi-trash"></i>
@@ -131,10 +146,9 @@
                                 </td>
                                 <td>{{ optional($menu->parent)->name }}</td>
                                 <td>{{ $menu->name }}</td>
-                                <td>{{ $menu->id }}</td>
+                                <td>{{ convertToPersianNumbers($menu->id) }}</td>
                             </tr>
 
-                            <!-- Modal حذف -->
                             <div class="modal fade" id="deleteModal-{{ $menu->id }}" tabindex="-1"
                                 aria-labelledby="deleteModalLabel-{{ $menu->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -163,73 +177,77 @@
                             </div>
 
                             <!-- Modal نمایش درختی -->
-                            
-                    <!-- Modal برای هر منو -->
-                    <div class="modal fade" id="menuModal-{{ $menu->id }}" tabindex="-1"
-                        aria-labelledby="menuModalLabel-{{ $menu->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content" style="position: absolute; bottom: 30rem;">
-                                <div class="modal-header">
-                                    <h5 style="position: absolute;left: 209px;" class="modal-title" id="menuModalLabel-{{ $menu->id }}">منوی درختی</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div style=" direction: rtl;" id="jstree-{{ $menu->id }}" class="jstree-wrapper">
-                                        <ul>
-                                            <li>{{ $menu->name }}
-                                                @if ($menu->children->isNotEmpty())
+                            <!-- Modal برای هر منو -->
+                            <div class="modal fade" id="menuModal-{{ $menu->id }}" tabindex="-1"
+                                aria-labelledby="menuModalLabel-{{ $menu->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="position: absolute; bottom: 30rem;">
+                                        <div class="modal-header">
+                                            <h5 style="position: absolute;left: 209px;" class="modal-title"
+                                                id="menuModalLabel-{{ $menu->id }}">منوی درختی</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style=" direction: rtl;" id="jstree-{{ $menu->id }}"
+                                                class="jstree-wrapper">
                                                 <ul>
-                                                    @foreach ($menu->children as $child)
-                                                    <li>{{ $child->name }}
-                                                        @if ($child->children->isNotEmpty())
-                                                        <ul>
-                                                            @foreach ($child->children as $grandchild)
-                                                            <li>{{ $grandchild->name }}</li>
-                                                            @endforeach
-                                                        </ul>
+                                                    <li>{{ $menu->name }}
+                                                        @if ($menu->children->isNotEmpty())
+                                                            <ul>
+                                                                @foreach ($menu->children as $child)
+                                                                    <li>{{ $child->name }}
+                                                                        @if ($child->children->isNotEmpty())
+                                                                            <ul>
+                                                                                @foreach ($child->children as $grandchild)
+                                                                                    <li>{{ $grandchild->name }}</li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        @endif
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
                                                         @endif
                                                     </li>
-                                                    @endforeach
                                                 </ul>
-                                                @endif
-                                            </li>
-                                        </ul>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button
+                                                style="padding: 2px 12px;text-align: center;position: relative;right: 26rem;"
+                                                type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">بستن</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button style="padding: 2px 12px;text-align: center;position: relative;right: 26rem;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    @empty
-                    <tr>
-                        <td colspan="6" class="text-center">منویی دریافت نشده</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            @empty
+                                <tr  >
+                                    <td colspan="6" class="text-center">منویی دریافت نشده</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <script>
-        $(document).ready(function () {
-            @foreach ($menus as $menu)
-            $('#menuModal-{{ $menu->id }}').on('shown.bs.modal', function () {
-                $('#jstree-{{ $menu->id }}').jstree({
-                    "core": {
-                        "themes": {
-                            "variant": "large"
-                        }
-                    }
+            <script>
+                $(document).ready(function() {
+                    @foreach ($menus as $menu)
+                        $('#menuModal-{{ $menu->id }}').on('shown.bs.modal', function() {
+                            $('#jstree-{{ $menu->id }}').jstree({
+                                "core": {
+                                    "themes": {
+                                        "variant": "large"
+                                    }
+                                }
+                            });
+                        });
+                    @endforeach
                 });
-            });
-            @endforeach
-        });
-    </script>
+            </script>
 
-    @endsection
-</body>
+        @endsection
+    </body>
 
-</html>
+    </html>

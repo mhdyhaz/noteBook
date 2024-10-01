@@ -24,18 +24,18 @@
             justify-content: center;
             gap: 35px;
             margin-bottom: 120px;
-            max-width: 800px; 
+            max-width: 800px;
         }
 
         .icon-box {
-            border: 2px solid #6851b9;
+            border: 2px solid #5c0d9370;
             border-radius: 8px;
             padding: 25px 35px;
             width: 8rem;
             background: #f2f0fd7a;
             transition: all 0.3s;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            height: 11rem; /* تغییر ارتفاع */
+            box-shadow: 0 8px 16px rgba(200, 158, 242, 0.51);
+            height: 11rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -44,20 +44,20 @@
         }
 
         .icon-box i {
-            font-size: 2.5rem; /* کاهش اندازه آیکون */
-            color: #0d021f;
+            font-size: 2.5rem;
+            /* کاهش اندازه آیکون */
+            color: #521bac;
             margin-bottom: 10px;
         }
 
         .icon-box:hover {
             border-width: 3px;
-            box-shadow: 0 8px 16px rgba(4, 0, 0, 0.5);
+            box-shadow: 0 8px 16px rgba(149, 17, 182, 0.651);
         }
 
         .icon-box a {
             text-decoration: none;
-            color: #030107;
-            font-family: sans-serif;
+            color: #521bac;
             font-size: 1.2rem;
         }
 
@@ -69,7 +69,7 @@
             overflow-y: auto;
             background-color: #fff;
             padding: 19px;
-            border-left: 2px solid #3000dd;
+            border-left: 2px dashed #bf50c4;
             box-sizing: border-box;
             left: 16rem;
         }
@@ -81,7 +81,7 @@
         }
 
         #menu {
-            font-family: sans-serif;
+
             font-size: 1.4rem;
             font-weight: bold;
             color: #030107;
@@ -108,7 +108,8 @@
             font-size: 1rem;
             border-radius: 5px;
         }
-        #a{
+
+        #a {
             font-size: 14px;
         }
     </style>
@@ -164,11 +165,9 @@
             <h4 id="menu">:منوهای ویژه</h4>
             <div id="jstree">
                 <ul>
-                
-                    @foreach ($menus as $menu) 
-                    
-                        @if ($menu->parent_id == null )
-                
+
+                    @foreach ($menus as $menu)
+                        @if ($menu->parent_id == null)
                             <li>
                                 {{ $menu->name }}
                                 @if ($menu->children->isNotEmpty())
@@ -197,14 +196,13 @@
                                     </ul>
                                 @endif
                             </li>
-                            
                         @endif
                     @endforeach
                 </ul>
             </div>
         </div>
 
-    
+
         <div class="modal fade" id="shareMenuModal" tabindex="-1" aria-labelledby="shareMenuModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -221,8 +219,8 @@
                                 <input type="email" class="form-control" id="email" required>
                             </div>
                             <input type="hidden" id="menuId">
-                            <button style="position: relative;left: 199px; background-color:#581a6f; border:none;" type="submit"
-                                class="btn btn-primary">ارسال</button>
+                            <button style="position: relative;left: 199px; background-color:#581a6f; border:none;"
+                                type="submit" class="btn btn-primary">ارسال</button>
                         </form>
                     </div>
                 </div>
@@ -234,6 +232,7 @@
             $(function() {
                 $('#jstree').jstree({
                     "core": {
+                        'check_callback': true, // این اجازه می‌ده که گره‌ها رو جابه‌جا کنیم
                         "themes": {
                             "variant": "large"
                         },
@@ -243,6 +242,9 @@
                                     @if ($menu->parent_id == null)
                                         {
                                             "text": "{{ $menu->name }} <i class='bi bi-share-fill share-icon' onclick='openShareModal({{ $menu->id }})'></i>",
+                                            "li_attr": {
+                                                "style": "color: black;"
+                                            },
                                             "icon": "{{ $menu->children->isNotEmpty() ? 'jstree-folder' : 'jstree-file' }}",
                                             "state": {
                                                 "opened": false
@@ -277,7 +279,8 @@
                             ];
                             callback(data);
                         }
-                    }
+                    },
+                    'plugins': ["dnd"]
                 });
             });
 

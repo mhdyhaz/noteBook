@@ -8,7 +8,6 @@
 
     <style>
         .share-container {
-            font-family: initial;
             color: black;
             width: 80rem;
             margin: auto;
@@ -48,7 +47,6 @@
             right: 360px;
             background-color:#dc3545;
             color: #ffe4e4;
-            font-family: revert;
         }
 
         .modal-footer button[type="button"] {

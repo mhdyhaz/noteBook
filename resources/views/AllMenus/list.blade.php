@@ -9,7 +9,7 @@
 </head>
 <style>
     .list-container {
-        font-family: initial;
+   
         color: black;
         width: 80rem;
         margin: auto;

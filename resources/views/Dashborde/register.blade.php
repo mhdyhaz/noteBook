@@ -64,7 +64,6 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 20px;
-            font-weight: bold;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;

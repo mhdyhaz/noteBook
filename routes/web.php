@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/Tag/addTag', [TagController::class, 'store'])->name('Tag.addTag');
-    Route::get('/Tag/addTag', [TagController::class, 'index'])->name('Tag.addTag');
+    Route::get('/Tag/addTag', [TagController::class, 'index'])->name('Tag.index');
 });
 
 

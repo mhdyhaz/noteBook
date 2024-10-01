@@ -10,7 +10,7 @@
    .footer{
     position: fixed;
       left: 0;
-      background: linear-gradient(0deg, rgb(190, 182, 219) 0%, rgb(82, 46, 134) 100%);
+      background: linear-gradient(0deg, rgb(225, 165, 230) 0%, rgb(90, 31, 123) 100%);
       bottom: 0;
       width: 100%;
       color: white;
@@ -20,7 +20,7 @@
    
    } 
     #id-p{
-       color: black;
+       color: rgb(255, 255, 255);
         font-size: 20px;
         text-align: center;
         font-weight: bold;

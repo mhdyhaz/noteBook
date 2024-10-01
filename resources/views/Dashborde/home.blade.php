@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
 
     <style>
         body {
@@ -17,7 +18,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
         }
 
         .main-container {
@@ -74,14 +74,14 @@
             overflow: hidden;
             text-align: center;
             background: #fefefe;
-         
+
         }
 
         .text-box p {
             margin: 0;
             padding: 0;
             line-height: 2.2;
-            animation: scrollText 14s linear 1;
+            animation: scrollText 6s linear 1;
         }
 
         @keyframes scrollText {
@@ -98,7 +98,7 @@
             font-weight: bold;
             width: 40px;
             height: 40px;
-            background-color:  #581a6f;
+            background-color: #581a6f;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -113,7 +113,7 @@
         }
 
         .scroll-arrow:hover {
-            background-color:  #3e0b50;
+            background-color: #3e0b50;
         }
 
         .button-container {
@@ -128,7 +128,7 @@
 
         .button-container button {
             font-weight: bold;
-            background-color:#581a6f;
+            background-color: #581a6f;
             width: 140px;
             height: 45px;
             color: white;
@@ -148,18 +148,18 @@
         }
 
         .close-btn {
-            background-color: rgb(155, 29, 29);
-            width: 30px;
+            width: 36px;
             height: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            color: white;
             cursor: pointer;
             position: absolute;
             bottom: 18rem;
             right: -15px;
+            color: #b33ad5;
+            font-size: 31px;
         }
     </style>
 </head>
@@ -167,7 +167,8 @@
 <body>
 
     <div class="main-container">
-        <img src="{{ asset('images/Cart1027302www.tiktarh.com_.jpg') }}" alt="Girl Working on Laptop" class="girl-image">
+        <img src="{{ asset('images/Cart1027302www.tiktarh.com_.jpg') }}" alt="Girl Working on Laptop"
+            class="girl-image">
 
         <div class="circle" id="circle" onclick="showText()">کلیک کنید</div>
 
@@ -195,24 +196,23 @@
     </div>
 
     <script>
-     
         function showText() {
             const circle = document.getElementById('circle');
             const textBox = document.getElementById('textBox');
             const scrollArrow = document.getElementById('scrollArrow');
 
-          
+
             circle.style.display = 'none';
             textBox.style.display = 'block';
 
             // نمایش آیکون پروفایل پس از تأخیر
             setTimeout(() => {
                 scrollArrow.style.display = 'flex';
-            }, 14000);
+            }, 6030);
 
         }
 
-        
+
         function showButtons() {
             const textBox = document.getElementById('textBox');
             const scrollArrow = document.getElementById('scrollArrow');
@@ -224,7 +224,7 @@
             buttons.style.display = 'flex';
         }
 
-        // بازگرداندن به حالت اولیه
+
         function hideText() {
             const circle = document.getElementById('circle');
             const buttons = document.getElementById('buttons');

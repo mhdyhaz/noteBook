@@ -122,6 +122,6 @@ class MenuController extends Controller
 
         $menu->delete();
 
-        return redirect()->route('AllMenus.menu')->with('success', 'Menu has been successfully deleted.');
+        return redirect()->route('AllMenus.list')->with('success', 'Menu has been successfully deleted.');
     }
 }
