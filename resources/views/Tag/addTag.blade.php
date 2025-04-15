@@ -33,9 +33,10 @@
             width: 48rem;
             display: flex;
             flex-direction: column;
-            bottom: 8rem;
+            bottom: 2rem;
             opacity: revert;
             position: absolute;
+            height: 25rem;
         }
 
         .menu-form label {

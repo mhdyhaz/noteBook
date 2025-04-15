@@ -28,13 +28,12 @@
         }
 
         .icon-box {
-            border: 2px solid #5c0d9370;
+            border:2px solid #17042670;
             border-radius: 8px;
-            padding: 25px 35px;
             width: 8rem;
             background: #f2f0fd7a;
             transition: all 0.3s;
-            box-shadow: 0 8px 16px rgba(200, 158, 242, 0.51);
+            box-shadow: 0 8px 16px rgba(110, 107, 114, 0.51);
             height: 11rem;
             display: flex;
             flex-direction: column;
@@ -67,7 +66,6 @@
             width: 300px;
             height: 102.5%;
             overflow-y: auto;
-            background-color: #fff;
             padding: 19px;
             border-left: 2px dashed #bf50c4;
             box-sizing: border-box;
@@ -110,7 +108,7 @@
         }
 
         #a {
-            font-size: 14px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -208,7 +206,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 style="position: relative;left: 154px;" class="modal-title" id="shareMenuModalLabel">
+                        <h5 style="position: relative;left: 160px;" class="modal-title" id="shareMenuModalLabel">
                             اشتراک‌گذاری منو</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>

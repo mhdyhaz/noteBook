@@ -111,7 +111,7 @@
                 <h1 id="lM">منوهای دریافتی</h1>
                 <table class="table table-striped table-hover">
                     <thead>
-                        <tr style="border-block-end-style: double; border: double;">
+                        <tr style="border-block-end-style: double;border: solid 1px #cacaca;">
                             <th>عملیات</th>
                             <th>ارسال‌کننده</th>
                             <th>تگ</th>

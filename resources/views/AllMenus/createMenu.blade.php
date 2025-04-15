@@ -39,9 +39,10 @@
             width: 48rem;
             display: flex;
             flex-direction: column;
-            bottom: 5rem;
+            bottom: 1rem;
             opacity: revert;
             position: absolute;
+            height: 29rem;
         }
 
         .menu-form label {
@@ -67,7 +68,7 @@
         .menu-form button[type="submit"] {
             background-color: #581a6f;
             color: white;
-            padding: 2px 308px;
+            padding: 4px 308px;
             border: none;
             border-radius: 5px;
             cursor: pointer;

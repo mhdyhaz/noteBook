@@ -28,7 +28,7 @@
             box-shadow: 0px 0px 10px rgba(194, 178, 204, 0.56);
             width: 52rem;
             height: 42rem;
-            background: #f9f8ff;
+            background: #fff;
             position: relative;
         }
 
@@ -82,6 +82,7 @@
             padding: 0;
             line-height: 2.2;
             animation: scrollText 6s linear 1;
+            font-weight: bold;
         }
 
         @keyframes scrollText {

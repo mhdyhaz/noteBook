@@ -84,7 +84,7 @@
 
             <table style="text-align: center;" class="table table-striped table-hover">
                 <thead>
-                    <tr style="border: black;  border-block-end-style: double;">
+                    <tr style="border: solid 1px #cacaca; border-block-end-style: double;">
                         <th>عملیات</th>
                         <th>دریافت کننده</th>
                         <th>تگ</th>
