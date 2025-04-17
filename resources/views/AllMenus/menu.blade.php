@@ -79,7 +79,8 @@
         }
 
         #menu {
-
+            left: 136px;
+            position: absolute;
             font-size: 1.4rem;
             font-weight: bold;
             color: #030107;
