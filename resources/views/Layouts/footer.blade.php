@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer درست</title>
     <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
         .footer {
-            position: fixed;
-            left: 0;
             background: linear-gradient(270deg, rgb(78, 16, 83), rgb(74, 4, 115), rgb(76, 14, 92), rgb(50, 40, 53));
             background-size: 600% 600%;
             animation: gradientMove 10s ease infinite;
-            bottom: 0;
-            width: 100%;
             color: white;
             text-align: center;
-            padding: 3px;
+            padding: 10px;
+            width: 100%;
         }
 
         @keyframes gradientMove {
@@ -33,25 +47,17 @@
         }
 
         #id-p {
-            color: rgb(255, 255, 255);
             font-size: 20px;
-            text-align: center;
             font-weight: bold;
-
         }
     </style>
 </head>
 
-
-
-
 <body>
 
     <div class="footer">
-        <p id="id-p"> Az </p>
+        <p id="id-p">Az</p>
     </div>
-
-
 
 </body>
 

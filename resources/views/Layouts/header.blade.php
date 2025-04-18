@@ -1,21 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 
 <head>
-    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <title>دفترچه یادداشت</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: #f7f7f7;
+        }
+
         .header {
-            padding: 48px 0;
-            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
             background: linear-gradient(270deg, rgb(58, 17, 61), rgb(74, 4, 115), rgb(115, 29, 136), rgb(50, 40, 53));
             background-size: 600% 600%;
             animation: gradientMove 10s ease infinite;
             color: white;
-            font-size: 16px;
-            width: 100%;
-            height: 42px;
-            overflow: hidden;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        #backButton,
+        #logout {
+            position: fixed;
+            top: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+
+        #backButton {
+            right: 20px;
+            color: #f2b4ff;
+        }
+
+        #logout {
+            left: 20px;
+            color: white;
+        }
+
+        .content {
+            padding: 100px 20px 40px;
+            min-height: 100vh;
         }
 
         @keyframes gradientMove {
@@ -31,65 +83,29 @@
                 background-position: 0% 50%;
             }
         }
-
-        #b-id {
-            font-size: 38px;
-            text-align: center;
-            color: white;
-            font-family: 'Vazirmatn';
-            font-weight: bold;
-            display: contents;
-        }
-
-        #backButton[type="submit"] {
-            background: none;
-            color: #581a6f;
-            font-weight: bold;
-            border: none;
-            opacity: inherit;
-            position: absolute;
-            top: 96px;
-            font-size: 27px;
-            border-radius: 5px;
-            padding: 4px 11px;
-            left: 10px;
-        }
-
-        #logout[type="submit"] {
-            background: none;
-            color: white;
-            font-weight: bold;
-            border: none;
-            opacity: inherit;
-            position: absolute;
-            top: 30px;
-            font-size: 27px;
-            border-radius: 5px;
-            padding: 3px 15px;
-            left: 10px;
-        }
     </style>
 </head>
 
 <body>
 
     @if (!isset($hideBackButton) || !$hideBackButton)
-    <button id="backButton" type="submit" onclick="window.history.back()">
-        <i class="bi bi-arrow-left"></i>
-    </button>
+        <button id="backButton" type="button" onclick="window.history.back()">
+            <i class="bi bi-arrow-right"></i>
+        </button>
     @endif
 
     @if (!isset($hidelogout) || !$hidelogout)
-    <form action="{{ route('Dashborde.home') }}" method="GET">
-        <button id="logout" type="submit">
-            <i class="bi bi-box-arrow-right"></i>
-        </button>
-    </form>
+        <form action="{{ route('Dashborde.home') }}" method="GET">
+            <button id="logout" type="submit">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </form>
     @endif
 
     <div class="header">
-        <h1 id="b-id">دفترچه یادداشت</h1>
+        <h1>دفترچه یادداشت</h1>
     </div>
+
 
 </body>
 

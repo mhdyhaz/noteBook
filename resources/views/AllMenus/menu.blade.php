@@ -209,7 +209,7 @@
                     <div class="modal-header">
                         <h5 style="position: relative;left: 160px;" class="modal-title" id="shareMenuModalLabel">
                             اشتراک‌گذاری منو</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute;"></button>
                     </div>
                     <div class="modal-body">
                         <form id="shareMenuForm">

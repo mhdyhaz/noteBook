@@ -9,7 +9,6 @@
 </head>
 <style>
     .list-container {
-
         color: black;
         width: 80rem;
         margin: auto;
@@ -96,18 +95,28 @@
                         <table class="table table-striped table-hover">
 
                             <thead>
-                                <tr style="border: solid 1px #cacaca;;">
-                                    <th>عملیات</th>
-                                    <th>تگ</th>
-                                    <th>منوی اصلی</th>
-                                    <th>نام منو</th>
+                                <tr style="border: solid 1px #cacaca;">
                                     <th>شناسه</th>
+                                    <th>نام منو</th>
+                                    <th>منوی اصلی</th>
+                                    <th>تگ</th>
+                                    <th>عملیات</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @foreach ($menus as $menu)
                                     <tr>
+                                        <td>{{ convertToPersianNumbers($menu->id) }}</td>
+                                        <td>{{ $menu->name }}</td>
+                                        <td>{{ optional($menu->parent)->name }}</td>
+                                        <td>
+                                            @foreach ($menu->tags as $tag)
+                                                {{ $tag->name }}@if (!$loop->last)
+                                                    ,
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <td>
                                             <a id="edit" href="{{ route('AllMenus.editMenu', $menu->id) }}"
                                                 class="btn btn-primary btn-sm">
@@ -118,16 +127,6 @@
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </td>
-                                        <td>
-                                            @foreach ($menu->tags as $tag)
-                                                {{ $tag->name }}@if (!$loop->last)
-                                                    ,
-                                                @endif
-                                            @endforeach
-                                        </td>
-                                        <td>{{ optional($menu->parent)->name }}</td>
-                                        <td>{{ $menu->name }}</td>
-                                        <td>{{ convertToPersianNumbers($menu->id) }}</td>
                                     </tr>
 
                                     <!-- مودال حذف -->

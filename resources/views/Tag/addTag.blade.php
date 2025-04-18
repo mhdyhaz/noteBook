@@ -67,17 +67,17 @@
         .menu-form button[type="submit"] {
             background-color: #581a6f;
             color: white;
-            padding: 2px 311px;
-            border: none;
-            border-radius: 5px;
+            padding: 2px 306px;
+            border:none;
+            border-radius:5px;
             cursor: pointer;
             font-size: 18px;
             position: absolute;
-            margin: 19px -645px;
+            margin:19px 3px;
         }
 
         .menu-form button[type="submit"]:hover {
-            background-color:  #3e0b50;
+            background-color: #3e0b50;
         }
     </style>
 </head>
@@ -93,7 +93,7 @@
                 <form autocomplete="off" method="POST" action="{{ route('Tag.addTag') }}">
                     @csrf
                     @if ($errors->any())
-                    <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
+                        <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
