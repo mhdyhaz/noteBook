@@ -74,7 +74,7 @@
             cursor: pointer;
             font-size: 18px;
             position: absolute;
-            margin: 19px -645px;
+            margin: 31px 0px;
         }
 
         .menu-form button[type="submit"]:hover {
