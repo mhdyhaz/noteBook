@@ -68,6 +68,8 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
     
         // اطمینان از اینکه منوی والد فعلی از لیست حذف شده است
+
+        
         $parentMenus = Auth::user()->menus->where('id', '!=', $menu->id);
     
         $tags = Tag::where('user_id', auth()->id())->get(); // فقط تگ‌های کاربر فعلی
