@@ -46,7 +46,6 @@ class MenuController extends Controller
                     // اگر تگ موجود باشد، به صورت عددی دریافت آن
                     $tag = Tag::find($tag);
                 }
-
                 if ($tag) {
                     $tagIds[] = $tag->id;
                 }
@@ -72,7 +71,6 @@ class MenuController extends Controller
         $parentMenus = Auth::user()->menus->where('id', '!=', $menu->id);
     
         $tags = Tag::where('user_id', auth()->id())->get(); // فقط تگ‌های کاربر فعلی
-    
         return view('AllMenus.editMenu', compact('menu', 'parentMenus', 'tags'));
     }
     
