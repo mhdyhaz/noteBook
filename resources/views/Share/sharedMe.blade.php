@@ -24,7 +24,6 @@
             padding: 6px 62px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(186, 178, 204, 0.41);
-            height: 42rem;
             position: absolute;
             top: 9rem;
             text-align: center;

@@ -65,11 +65,6 @@
             color: white;
         }
 
-        .content {
-            padding: 100px 20px 40px;
-            min-height: 100vh;
-        }
-
         @keyframes gradientMove {
             0% {
                 background-position: 0% 50%;

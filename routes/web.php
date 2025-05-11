@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/AllMenus/edit/{id}', [MenuController::class, 'editMenu'])->name('AllMenus.editMenu');
     Route::put('/AllMenus/edit/{id}', [MenuController::class, 'update'])->name('AllMenus.update');
     Route::delete('/AllMenus/list/{id}', [MenuController::class, 'destroy'])->name('AllMenus.destroy');
+    Route::post('/save-menu-order', [MenuController::class, 'saveOrder'])->name('menus.saveOrder');
+
 });
 
 

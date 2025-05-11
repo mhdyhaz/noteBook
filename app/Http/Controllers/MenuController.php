@@ -6,9 +6,14 @@ use App\Models\Menu;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\ApiController;
 
-class MenuController extends Controller
+
+
+
+class MenuController extends ApiController
 {
+
     public function index()
     {
         $menus = Auth::user()->menus()->with('children', 'tags', 'parent')->get();
@@ -68,7 +73,6 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
     
         // اطمینان از اینکه منوی والد فعلی از لیست حذف شده است
-
         $parentMenus = Auth::user()->menus->where('id', '!=', $menu->id);
     
         $tags = Tag::where('user_id', auth()->id())->get(); // فقط تگ‌های کاربر فعلی
@@ -123,4 +127,19 @@ class MenuController extends Controller
 
         return redirect()->route('AllMenus.list')->with('success', 'Menu has been successfully deleted.');
     }
+        public function saveOrder(Request $request)
+    {
+        $menu = Menu::find($request->id);
+
+        if (!$menu || $menu->user_id !== Auth::id()) {
+            return $this->jsonSuccessResponse([  ],'منو پیدا نشد یا مجوز ندارید.',403);
+        }
+
+        $menu->parent_id = $request->parent_id;
+        $menu->position = $request->position;
+        $menu->save();
+
+        return $this->jsonSuccessResponse([],'ترتیب منو ذخیره شد',);
+    }
+
 }

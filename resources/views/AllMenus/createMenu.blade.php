@@ -39,7 +39,6 @@
             width: 48rem;
             display: flex;
             flex-direction: column;
-            bottom: 1rem;
             opacity: revert;
             position: absolute;
             height: 29rem;

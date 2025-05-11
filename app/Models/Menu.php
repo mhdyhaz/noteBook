@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
-    protected $fillable = ['name', 'parent_id', 'user_id'];
+    protected $fillable = ['name', 'parent_id', 'user_id','position'];
 
     public function user(): BelongsTo
     {
@@ -27,7 +27,7 @@ class Menu extends Model
 
     public function children(): HasMany
     {
-        return $this->hasMany(Menu::class, 'parent_id');
+        return $this->hasMany(Menu::class, 'parent_id')->orderBy('position');
     }
     public function sharedBy(): BelongsToMany
 {

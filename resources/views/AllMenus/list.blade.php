@@ -18,7 +18,6 @@
         padding: 6px 62px;
         border-radius: 12px;
         box-shadow: 0 4px 8px rgba(186, 178, 204, 0.41);
-        height: 42rem;
         position: absolute;
         top: 9rem;
         text-align: center;
@@ -135,10 +134,8 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 style="position: relative; left:197px;" class="modal-title"
+                                                    <h5 style="position: relative;" class="modal-title"
                                                         id="deleteModalLabel-{{ $menu->id }}">حذف منو</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div style="text-align: center;" class="modal-body">
                                                     آیا می‌خواهید منو "{{ $menu->name }}" حذف شود؟
