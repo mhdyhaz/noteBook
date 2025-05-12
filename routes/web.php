@@ -8,14 +8,14 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/Dashborde', [HomeController::class, 'home'])->name('Dashborde.home');
+Route::get('/Dashboard', [HomeController::class, 'home'])->name('Dashboard.home');
 Route::get('/Layouts', [HomeController::class, 'app'])->name('Layouts.app');
 
-Route::get('/Dashborde/login', [LoginController::class, 'showLoginForm'])->name('Dashborde.login');
-Route::post('/Dashborde/login', [LoginController::class, 'login']);
+Route::get('/Dashboard/login', [LoginController::class, 'showLoginForm'])->name('Dashboard.login');
+Route::post('/Dashboard/login', [LoginController::class, 'login']);
 
-Route::get('/Dashborde/register', [RegisterController::class, 'showRegistrationForm'])->name('Dashborde.register');
-Route::post('/Dashborde/register', [RegisterController::class, 'register']);
+Route::get('/Dashboard/register', [RegisterController::class, 'showRegistrationForm'])->name('Dashboard.register');
+Route::post('/Dashboard/register', [RegisterController::class, 'register']);
 
 
 Route::middleware(['auth'])->group(function () {

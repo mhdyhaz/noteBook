@@ -7,6 +7,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <title>Menu</title>
 
     <style>
@@ -121,9 +123,6 @@
     @extends('Layouts.app')
 
     @section('content')
-        @php
-            $hideBackButton = true;
-        @endphp
         @if ($errors->any())
             <div style="text-align: left;width: 31rem;position: relative;left: 61px;" class="alert alert-danger">
                 <ul>

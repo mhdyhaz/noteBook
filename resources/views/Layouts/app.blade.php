@@ -39,7 +39,7 @@
 <body>
   
  
-    @if(!in_array(Request::path(), ['Dashborde', 'Dashborde/login', 'Dashborde/register']))
+    @if(!in_array(Request::path(), ['Dashboard', 'Dashboard/login', 'Dashboard/register']))
         @include('Layouts.header') 
     @endif
     
@@ -47,7 +47,7 @@
         @yield('content') 
     </div>
 
-    @if(!in_array(Request::path(), ['Dashborde', 'Dashborde/login', 'Dashborde/register']))
+    @if(!in_array(Request::path(), ['Dashboard', 'Dashboard/login', 'Dashboard/register']))
         @include('Layouts.footer') 
     @endif
   

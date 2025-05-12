@@ -94,7 +94,7 @@
     <div class="login-container">
         <div class="login-form">
             <h2>ثبت‌نام</h2>
-            <form method="POST" action="{{ route('Dashborde.register') }}">
+            <form  autocomplete="off" method="POST" action="{{ route('Dashboard.register') }}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -107,19 +107,19 @@
                 @endif
                 <div>
                     <label for="name">نام</label>
-                    <input type="text" id="name" name="name" required>
+                    <input  autocomplete="false" type="text" id="name" name="name" required>
                 </div>
                 <div>
                     <label for="email">ایمیل</label>
-                    <input  style="text-align: left;" type="email" id="email" name="email" required  autocomplete="off"> 
+                    <input   autocomplete="false"  style="text-align: left;" type="email" id="email" name="email" required  autocomplete="off"> 
                 </div>
                 <div>
                     <label for="password">رمز عبور</label>
-                    <input type="password" id="password" name="password" required>
+                    <input  autocomplete="false"  type="password" id="password" name="password" required>
                 </div>
                 <div>
                     <label for="password_confirmation">تأیید رمز عبور</label>
-                    <input type="password" id="password_confirmation" name="password_confirmation" required>
+                    <input  autocomplete="false"  type="password" id="password_confirmation" name="password_confirmation" required>
                 </div>
                 <div>
                     <button type="submit">ثبت‌نام</button>

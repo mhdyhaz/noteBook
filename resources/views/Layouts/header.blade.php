@@ -43,10 +43,8 @@
             margin: 0;
             font-weight: bold;
         }
-
-        #backButton,
         #logout {
-            position: fixed;
+            position: absolute;
             top: 20px;
             background: none;
             border: none;
@@ -55,14 +53,9 @@
             cursor: pointer;
         }
 
-        #backButton {
-            right: 20px;
-            color: #f2b4ff;
-        }
-
         #logout {
             left: 20px;
-            color: white;
+            color: rgb(253, 253, 253);
         }
 
         @keyframes gradientMove {
@@ -83,24 +76,16 @@
 
 <body>
 
-    @if (!isset($hideBackButton) || !$hideBackButton)
-        <button id="backButton" type="button" onclick="window.history.back()">
-            <i class="bi bi-arrow-right"></i>
-        </button>
-    @endif
-
-    @if (!isset($hidelogout) || !$hidelogout)
-        <form action="{{ route('Dashborde.home') }}" method="GET">
+    <div class="header">
+        @if (!isset($hidelogout) || !$hidelogout)
+        <form action="{{ route('Dashboard.home') }}" method="GET">
             <button id="logout" type="submit">
                 <i class="bi bi-box-arrow-right"></i>
             </button>
         </form>
     @endif
-
-    <div class="header">
         <h1>دفترچه یادداشت</h1>
     </div>
-
 
 </body>
 

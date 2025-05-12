@@ -94,7 +94,7 @@
     <div class="login-container">
         <div class="login-form">
             <h2>ورود</h2>
-            <form method="POST" action="{{ route('Dashborde.login') }}">
+            <form autocomplete="off" method="POST" action="{{ route('Dashboard.login') }}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -107,11 +107,11 @@
                 @endif
                 <div>
                     <label for="email">ایمیل</label>
-                    <input style="text-align: left;" type="text" id="email" name="email">
+                    <input autocomplete="false"  style="text-align: left;" type="text" id="email" name="email">
                 </div>
                 <div>
                     <label for="password">رمز عبور</label>
-                    <input type="password" id="password" name="password">
+                    <input autocomplete="false"  type="password" id="password" name="password">
                 </div>
                 <div>
                     <button type="submit">ورود</button>

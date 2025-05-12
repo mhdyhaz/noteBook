@@ -7,7 +7,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        return view('Dashborde.home'); 
+        return view('Dashboard.home'); 
     }
 
     public function header(){

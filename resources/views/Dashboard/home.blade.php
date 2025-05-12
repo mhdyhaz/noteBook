@@ -190,8 +190,8 @@
         </div>
 
         <div class="button-container" id="buttons">
-            <button onclick="window.location.href='{{ route('Dashborde.login') }}'">ورود</button>
-            <button onclick="window.location.href='{{ route('Dashborde.register') }}'">ثبت نام</button>
+            <button onclick="window.location.href='{{ route('Dashboard.login') }}'">ورود</button>
+            <button onclick="window.location.href='{{ route('Dashboard.register') }}'">ثبت نام</button>
             <div class="close-btn" onclick="hideText()">×</div>
         </div>
     </div>
