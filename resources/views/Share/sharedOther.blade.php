@@ -37,7 +37,7 @@
             background: none;
             color: rgb(182, 10, 10);
             border: none;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .modal-footer button[type="submit"] {
@@ -52,9 +52,20 @@
             position: relative;
             padding: 2px 15px;
             right: 355px;
-
-
         }
+
+        #cancel {
+            position: relative;
+            padding: 2px 15px;
+            right: 20px;
+        }
+
+        #delete2 {
+            position: relative;
+            padding: 2px 9px;
+            right: 8px;
+        }
+
     </style>
 
 </head>
@@ -84,24 +95,21 @@
             <table style="text-align: center;" class="table table-striped table-hover">
                 <thead>
                     <tr style="border: solid 1px #cacaca; border-block-end-style: double;">
-                        <th>عملیات</th>
-                        <th>دریافت کننده</th>
-                        <th>تگ</th>
-                        <th>منو اصلی</th>
-                        <th>نام منو</th>
                         <th>شناسه</th>
+                        <th>نام منو</th>
+                        <th>منو اصلی</th> 
+                        <th>تگ</th>
+                        <th>دریافت کننده</th>
+                        <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($sharedMenus->isNotEmpty())
                         @foreach ($sharedMenus as $menuShare)
                             <tr>
-                                <td>
-                                    <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal-{{ $menuShare->menu->id }}">
-                                        <i class="bi bi-trash"></i></button>
-                                </td>
-                                <td>{{ $menuShare->user->name }}</td>
+                                <td>{{ convertToPersianNumbers($menuShare->menu->id) }}</td>
+                                <td>{{ $menuShare->menu->name }}</td>
+                                <td>{{ optional($menuShare->menu->parent)->name }}</td>
                                 <td>
                                     @foreach ($menuShare->menu->tags as $tag)
                                         {{ $tag->name }}@if (!$loop->last)
@@ -109,10 +117,12 @@
                                         @endif
                                     @endforeach
                                 </td>
-                                <td>{{ optional($menuShare->menu->parent)->name }}</td>
-                                <td>{{ $menuShare->menu->name }}</td>
-                                <td>{{ convertToPersianNumbers($menuShare->menu->id) }}</td>
-
+                                <td>{{ $menuShare->user->name }}</td>
+                                <td>
+                                    <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal-{{ $menuShare->menu->id }}">
+                                        <i class="bi bi-trash"></i></button>
+                                </td>
                             </tr>
 
                             <!-- Modal for Delete -->
@@ -129,7 +139,7 @@
                                             آیا مطمئنید که می‌خواهید منوی "{{ $menuShare->menu->name }}" را حذف کنید؟
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button id="cancel" type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">لغو</button>
                                             <form action="{{ route('shared-menu.remove-as-sender') }}" method="POST"
                                                 style="display:inline;">
@@ -138,7 +148,7 @@
                                                 <input type="hidden" name="menu_id" value="{{ $menuShare->menu->id }}">
                                                 <input type="hidden" name="receiver_id"
                                                     value="{{ $menuShare->user->id }}">
-                                                <button type="submit" class="btn btn-danger-building">حذف</button>
+                                                <button id="delete2" type="submit" class="btn btn-danger-building">حذف</button>
                                             </form>
                                         </div>
                                     </div>

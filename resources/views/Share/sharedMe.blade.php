@@ -38,13 +38,13 @@
         #cancel {
             position: relative;
             padding: 2px 15px;
-            right: 355px;
+            right: 20px;
         }
 
         #delete2 {
             position: relative;
             padding: 2px 9px;
-            right: 344px;
+            right: 8px;
         }
 
         table th,
@@ -56,7 +56,7 @@
 
         #eye {
             background: none;
-            font-size: 18px;
+            font-size: 20px;
             border: none;
         }
 
@@ -64,7 +64,7 @@
             background: none;
             color: rgb(182, 10, 10);
             border: none;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .modal-content {
@@ -111,47 +111,44 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr style="border-block-end-style: double;border: solid 1px #cacaca;">
-                            <th>عملیات</th>
-                            <th>ارسال‌کننده</th>
-                            <th>تگ</th>
-                            <th>منوی اصلی</th>
-                            <th>نام منو</th>
                             <th>شناسه</th>
+                            <th>نام منو</th>
+                            <th>منوی اصلی</th>
+                            <th>تگ</th>
+                            <th>ارسال‌کننده</th> 
+                            <th>عملیات</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($menus as $menu)
-                            <tr>
+                        <tr>
+                            <td>{{ convertToPersianNumbers($menu->id) }}</td>
+                            <td>{{ $menu->name }}</td>
+                            <td>{{ optional($menu->parent)->name }}</td>
+                            <td>
+                                @foreach ($menu->tags as $tag)
+                                    {{ $tag->name }}@if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>{{ $menu->user->name }}</td>
                                 <td>
-
                                     <button id="eye" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#menuModal-{{ $menu->id }}">
                                         <i class="bi bi-eye"></i>
                                     </button>
-
-
                                     <button id="delete" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $menu->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
-                                <td>{{ $menu->user->name }}</td>
-                                <td>
-                                    @foreach ($menu->tags as $tag)
-                                        {{ $tag->name }}@if (!$loop->last)
-                                            ,
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>{{ optional($menu->parent)->name }}</td>
-                                <td>{{ $menu->name }}</td>
-                                <td>{{ convertToPersianNumbers($menu->id) }}</td>
                             </tr>
 
                             <div class="modal fade" id="deleteModal-{{ $menu->id }}" tabindex="-1"
                                 aria-labelledby="deleteModalLabel-{{ $menu->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="position: absolute;bottom: 47rem;">
+                                    <div class="modal-content" style="position: absolute;bottom: 40rem;">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteModalLabel-{{ $menu->id }}"
                                                 style="position: absolute; left: 162px;">حذف منو دریافت شده</h5>
@@ -213,7 +210,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button
-                                                style="padding: 2px 12px;text-align: center;position: relative;right: 26rem;"
+                                                style="padding: 2px 12px;text-align: center;position: relative;right: 8px;"
                                                 type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">بستن</button>
                                         </div>
@@ -229,23 +226,6 @@
                     </table>
                 </div>
             </div>
-
-            <script>
-                $(document).ready(function() {
-                    @foreach ($menus as $menu)
-                        $('#menuModal-{{ $menu->id }}').on('shown.bs.modal', function() {
-                            $('#jstree-{{ $menu->id }}').jstree({
-                                "core": {
-                                    "themes": {
-                                        "variant": "large"
-                                    }
-                                }
-                            });
-                        });
-                    @endforeach
-                });
-            </script>
-
         @endsection
     </body>
 

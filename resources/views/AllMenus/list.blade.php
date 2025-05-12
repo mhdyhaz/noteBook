@@ -44,7 +44,7 @@
         background: none;
         color: rgb(11, 13, 112);
         border: none;
-        font-size: 22px;
+        font-size: 20px;
     }
 
 
@@ -52,7 +52,7 @@
         background: none;
         color: rgb(182, 10, 10);
         border: none;
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .modal-footer button[type="submit"] {
